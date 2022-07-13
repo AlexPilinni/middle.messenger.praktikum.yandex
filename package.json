@@ -1,0 +1,29 @@
+{
+  "name": "middle.yandex.praktikum.messenger",
+  "version": "1.0.0",
+  "description": "messenger",
+  "main": "index.pug",
+  "scripts": {
+    "start": "parcel src/index.pug --open",
+    "build": "parcel build src/index.pug -d docs --public-url ./"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AlexPilinni/middle.yandex.praktikum.messenger.git"
+  },
+  "keywords": [
+    "messenger",
+    "yandex",
+    "praktikum"
+  ],
+  "author": "Alex Pilin",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AlexPilinni/middle.yandex.praktikum.messenger/issues"
+  },
+  "homepage": "https://github.com/AlexPilinni/middle.yandex.praktikum.messenger#readme",
+  "devDependencies": {
+    "pug": "^3.0.2",
+    "sass": "^1.53.0"
+  }
+}
