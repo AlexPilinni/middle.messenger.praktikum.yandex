@@ -1,5 +1,6 @@
-$color: deepskyblue;
+@import "./static/styles/variables";
 
 h1 {
-  color: $color;
+  font-family: Inter, sans-serif;
+  font-weight: 100;
 }
