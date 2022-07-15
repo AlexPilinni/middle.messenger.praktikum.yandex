@@ -1,0 +1,19 @@
+@import "../../../static/styles/variables";
+
+.button {
+  max-width: 100%;
+  width: 100%;
+  height: 40px;
+  background: $blue;
+  box-shadow: 0 3px 7px 1px rgba($black, 0.25);
+  border-radius: 8px;
+  border: none;
+  font-family: $basic;
+  font-size: 18px;
+  text-align: center;
+  color: $white;
+  outline: none;
+  &:hover {
+    cursor: pointer;
+  }
+}
