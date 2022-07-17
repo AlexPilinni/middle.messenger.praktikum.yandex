@@ -1,0 +1,47 @@
+extends ../../../src/layouts/layout
+
+block links
+    link(rel="stylesheet", href="edit-profile.scss")
+
+block content
+    include ../../components/button/button
+    -
+        var user = {
+          email: 'pochta@yandex.ru',
+          login: 'ivanivanov',
+          first_name: 'Иван',
+          second_name: 'Иванов',
+          display_name: 'Иван',
+          phone: '+7 (909) 967 30 30'
+        }
+
+    .edit-profile
+        aside
+            a(href="../messenger/messenger.pug")
+                img(src="../../../static/images/back.svg")
+        main
+            form
+                .avatar
+                    img(src="../../../static/images/avatar.svg")
+                span.user=user.display_name
+                ul.info
+                    li
+                        .name Почта
+                        input(class="value" value=user.email)
+                    li
+                        .name Логин
+                        input(class="value" value=user.login)
+                    li
+                        .name Имя
+                        input(class="value" value=user.first_name)
+                    li
+                        .name Фамилия
+                        input(class="value" value=user.second_name)
+                    li
+                        .name Имя в чате
+                        input(class="value" value=user.display_name)
+                    li
+                        .name Телефон
+                        input(class="value" value=user.phone)
+                +button("submit", "Сохранить", "edit-profile__button")
+

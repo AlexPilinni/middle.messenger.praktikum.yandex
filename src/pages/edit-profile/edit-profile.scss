@@ -1,0 +1,100 @@
+@import '../../../static/styles/variables';
+@import '../../components/button/button';
+
+.edit-profile {
+  display: flex;
+  flex-direction: row;
+
+  & aside {
+    background-color: $messenger-gray;
+    width: 64px;
+    height: 100vh;
+    border-right: 1px solid $divider-gray;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    & a {
+      text-decoration: none;
+      width: 28px;
+      height: 28px;
+      border-radius: 14px;
+      background-color: $blue;
+      outline: none;
+      border: none;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+
+  & main {
+    display: flex;
+    justify-content: center;
+    align-self: center;
+    width: 100%;
+    height: 100%;
+    font-family: $basic;
+
+    & form {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    & .avatar {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 130px;
+      height: 130px;
+      border-radius: 65px;
+      background-color: $light-gray;
+      margin-bottom: 21px;
+    }
+
+    & .user {
+      font-family: $basic;
+      font-style: normal;
+      font-weight: 600;
+      font-size: 16px;
+      line-height: 16px;
+      margin-bottom: 60px;
+    }
+
+    & .info {
+      margin-bottom: 40px;
+    }
+
+    & .info li {
+      width: 510px;
+      display: flex;
+      justify-content: space-between;
+      font-style: normal;
+      font-weight: 500;
+      font-size: 13px;
+      line-height: 13px;
+      padding: 10px 0;
+      border-bottom: 1px solid $divider-gray;
+
+      & .name {
+        color: $black;
+      }
+
+      & .value {
+        border: none;
+        outline: none;
+        text-align: right;
+        background-color: transparent;
+        color: $gray;
+      }
+    }
+  }
+
+  &__button {
+    width: 280px;
+    height: 37px;
+    margin-top: 50px;
+  }
+}

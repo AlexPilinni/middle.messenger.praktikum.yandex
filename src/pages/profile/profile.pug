@@ -1,0 +1,51 @@
+extends ../../../src/layouts/layout
+
+block links
+    link(rel="stylesheet", href="profile.scss")
+
+block content
+    -
+      var user = {
+        email: 'pochta@yandex.ru',
+        login: 'ivanivanov',
+        first_name: 'Иван',
+        second_name: 'Иванов',
+        display_name: 'Иван',
+        phone: '+7 (909) 967 30 30'
+      }
+
+    .profile
+        aside
+            a(href="../messenger/messenger.pug")
+                img(src="../../../static/images/back.svg")
+        main
+            section
+                .avatar
+                    img(src="../../../static/images/avatar.svg")
+                span.user=user.display_name
+                ul.info
+                    li
+                        .name Почта
+                        .value= user.email
+                    li
+                        .name Логин
+                        .value= user.login
+                    li
+                        .name Имя
+                        .value= user.first_name
+                    li
+                        .name Фамилия
+                        .value= user.second_name
+                    li
+                        .name Имя в чате
+                        .value= user.display_name
+                    li
+                        .name Телефон
+                        .value= user.phone
+                ul.controls
+                    li
+                        a(href="../edit-profile/edit-profile.pug") Изменить данные
+                    li
+                        a(href="../edit-password/edit-password.pug") Изменить пароль
+                    li
+                        a(href="../login/login.pug") Выйти

@@ -76,6 +76,7 @@ pre {
  */
 
 a {
+  text-decoration: none;
   background-color: transparent;
 }
 
@@ -110,9 +111,13 @@ samp {
   font-size: 1em; /* 2 */
 }
 
-ul, p {
+ul, p, li {
   margin: 0;
   padding: 0;
+}
+
+li {
+  list-style-type: none;
 }
 /**
  * Add the correct font size in all browsers.
