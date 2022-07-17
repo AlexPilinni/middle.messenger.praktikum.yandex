@@ -1,0 +1,32 @@
+@import '../../../static/styles/variables';
+
+.server-errors {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  font-family: $basic;
+  font-style: normal;
+  font-weight: 500;
+  color: $black;
+
+  & h1 {
+    font-size: 40px;
+    line-height: 40px;
+  }
+
+  & span {
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 20px;
+    margin: 20px 0 70px;
+  }
+  & a {
+    font-weight: 500;
+    font-size: 11px;
+    line-height: 11px;
+    color: $blue;
+  }
+}
