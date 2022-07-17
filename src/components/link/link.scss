@@ -1,0 +1,26 @@
+@import '../../../static/styles/variables';
+
+.link {
+  display: flex;
+  flex-direction: row;
+  justify-content: right;
+  align-items: center;
+  font-family: $basic;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 12px;
+  text-decoration: none;
+  color: $gray;
+  outline: none;
+
+  & span {
+    margin-right: 5px;
+  }
+
+  & img {
+    width: 4px;
+    height: 8px;
+    //background-color: $gray;
+  }
+}

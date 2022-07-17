@@ -1,0 +1,10 @@
+mixin card(name,time, message, counter)
+    .card
+        img
+        .card__main
+            .card__header
+                span.card__name=name
+                span.card__time=time
+            .card__body
+                p.card__message=message
+                .card__counter=counter

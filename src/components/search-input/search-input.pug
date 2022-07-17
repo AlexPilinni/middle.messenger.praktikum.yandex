@@ -1,0 +1,17 @@
+mixin search-input(className, alt)
+    div(class=`search-input ${className}`)
+        input.input(
+            id=search
+            placeholder='Поиск'
+        )
+        img(
+            src="../../../static/images/search-icon.svg"
+            alt=alt
+            class="icon"
+        )
+
+        label.label(
+            for=search
+        ) Поиск
+
+
