@@ -4,7 +4,11 @@
   display: flex;
   flex-direction: row;
 
-  & aside {
+  &__title {
+    display: none;
+  }
+
+  &__panel {
     background-color: $messenger-gray;
     width: 64px;
     height: 100vh;
@@ -12,103 +16,103 @@
     display: flex;
     justify-content: center;
     align-items: center;
-
-    & a {
-      text-decoration: none;
-      width: 28px;
-      height: 28px;
-      border-radius: 14px;
-      background-color: $blue;
-      outline: none;
-      border: none;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
   }
 
-  & main {
+  &__link {
+    text-decoration: none;
+    width: 28px;
+    height: 28px;
+    border-radius: 14px;
+    background-color: $blue;
+    outline: none;
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  &__main {
     display: flex;
     justify-content: center;
     align-self: center;
     width: 100%;
     height: 100%;
     font-family: $basic;
+  }
+  &__section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
 
-    & section {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-    }
+  &__avatar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 130px;
+    height: 130px;
+    border-radius: 65px;
+    background-color: $light-gray;
+    margin-bottom: 21px;
+  }
 
-    & .avatar {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      width: 130px;
-      height: 130px;
-      border-radius: 65px;
-      background-color: $light-gray;
-      margin-bottom: 21px;
-    }
+  &__user {
+    font-family: $basic;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 16px;
+    margin-bottom: 60px;
+  }
 
-    & .user {
-      font-family: $basic;
-      font-style: normal;
-      font-weight: 600;
-      font-size: 16px;
-      line-height: 16px;
-      margin-bottom: 60px;
-    }
+  &__info {
+    margin-bottom: 40px;
+  }
 
-    & .info {
-      margin-bottom: 40px;
-    }
+  &__item {
+    width: 510px;
+    display: flex;
+    justify-content: space-between;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 13px;
+    line-height: 13px;
+    padding: 10px 0;
+    border-bottom: 1px solid $divider-gray;
+  }
 
-    & .info li {
+  &__name {
+    color: $black;
+  }
+
+  &__value {
+    color: $gray;
+  }
+
+  & .controls {
+    width: 100% ;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 13px;
+    line-height: 13px;
+
+    &__item {
       width: 510px;
-      display: flex;
-      justify-content: space-between;
-      font-style: normal;
-      font-weight: 500;
-      font-size: 13px;
-      line-height: 13px;
       padding: 10px 0;
       border-bottom: 1px solid $divider-gray;
 
-      & .name {
-        color: $black;
-      }
-
-      & .value {
-        color: $gray;
+      &:last-child {
+        border: none;
       }
     }
 
-    & .controls {
-      width: 100% ;
-      font-style: normal;
-      font-weight: 500;
-      font-size: 13px;
-      line-height: 13px;
+    &__link {
+      color: $blue;
+    }
 
-      & li {
-        width: 510px;
-        padding: 10px 0;
-        border-bottom: 1px solid $divider-gray;
-
-        &:last-child {
-          border: none  ;
-        }
-      }
-      a {
-        color: $blue;
-      }
-      & li:last-child a{
-        color: $red;
-        border-bottom: none;
-      }
+    &__item:last-child a{
+      color: $red;
+      border-bottom: none;
     }
   }
 }

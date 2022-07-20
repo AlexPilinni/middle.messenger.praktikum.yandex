@@ -4,7 +4,5 @@ block links
     link(rel="stylesheet", href="404.scss")
 
 block content
-    .client-errors
-        h1 404
-        span Что-то пошло не так...
-        a(href="../messenger/messenger.pug") Назад к чатам
+    include ../../components/errors/errors
+    +errors('404', 'Что-то пошло не так...')

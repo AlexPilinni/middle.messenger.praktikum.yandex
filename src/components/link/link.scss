@@ -14,13 +14,12 @@
   color: $gray;
   outline: none;
 
-  & span {
+  &__text {
     margin-right: 5px;
   }
 
-  & img {
+  &__img {
     width: 4px;
     height: 8px;
-    //background-color: $gray;
   }
 }

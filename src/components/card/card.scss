@@ -3,13 +3,13 @@
 .card {
   display: flex;
   flex-direction: row;
-  height: 70px;
   box-sizing: border-box;
+  height: 70px;
   padding: 12px 0;
   font-family: $basic;
   cursor: pointer;
 
-  & img {
+  &__img {
     margin-right: 10px;
     border-radius: 30px;
     height: 47px;

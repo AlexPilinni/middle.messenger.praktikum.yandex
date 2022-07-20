@@ -16,15 +16,16 @@ block content
           {name: 'Алексей', time: "10:20", message: "Го гулять", counter: "3"}
       ]
     .messenger
-        aside
+        h1.messenger__title
+        aside.messenger__panel
             +link("messenger__link", "../profile/profile.pug")
             +search-input("messenger__search", 'Найти чат')
-            ul
+            ul.messenger__list
               each item in users
-                  li
+                  li.messenger__item
                       +card(item.name, item.time, item.message, item.counter)
-        main
-            .no_select
+        main.messenger__main
+            .messenger__noselect
                 | Выберите чат чтобы отправить сообщение
 
 

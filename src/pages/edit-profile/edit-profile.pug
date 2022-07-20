@@ -16,32 +16,33 @@ block content
         }
 
     .edit-profile
-        aside
-            a(href="../messenger/messenger.pug")
-                img(src="../../../static/images/back.svg")
-        main
-            form
-                .avatar
-                    img(src="../../../static/images/avatar.svg")
+        h1.edit-profile__title
+        aside.edit-profile__panel
+            a(href="../messenger/messenger.pug" class="edit-profile__link")
+                img(src="../../../static/images/back.svg" class="edit-profile__img")
+        main.edit-profile__main
+            form.edit-profile__form
+                .edit-profile__avatar
+                    img(src="../../../static/images/avatar.svg" class="edit-profile__avatar--img")
                 span.user=user.display_name
-                ul.info
-                    li
-                        .name Почта
-                        input(class="value" value=user.email)
-                    li
-                        .name Логин
-                        input(class="value" value=user.login)
-                    li
-                        .name Имя
-                        input(class="value" value=user.first_name)
-                    li
-                        .name Фамилия
-                        input(class="value" value=user.second_name)
-                    li
-                        .name Имя в чате
-                        input(class="value" value=user.display_name)
-                    li
-                        .name Телефон
-                        input(class="value" value=user.phone)
+                ul.edit-profile__info
+                    li.edit-profile__item
+                        .edit-profile__name Почта
+                        input(class="edit-profile__value" value=user.email)
+                    li.edit-profile__item
+                        .edit-profile__name Логин
+                        input(class="edit-profile__value" value=user.login)
+                    li.edit-profile__item
+                        .edit-profile__name Имя
+                        input(class="edit-profile__value" value=user.first_name)
+                    li.edit-profile__item
+                        .edit-profile__name Фамилия
+                        input(class="edit-profile__value" value=user.second_name)
+                    li.edit-profile__item
+                        .edit-profile__name Имя в чате
+                        input(class="edit-profile__value" value=user.display_name)
+                    li.edit-profile__item
+                        .edit-profile__name Телефон
+                        input(class="edit-profile__value" value=user.phone)
                 +button("submit", "Сохранить", "edit-profile__button")
 

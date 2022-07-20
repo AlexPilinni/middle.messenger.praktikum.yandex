@@ -4,32 +4,36 @@
 @import "../../../src/components/card/card";
 
 .messenger {
-
   display: flex;
   flex-direction: row;
-  aside {
+
+  &__title {
+    display: none;
+  }
+
+  &__panel {
     width: 310px;
     min-width: 310px;
     height: 100vh;
     border-right: 1px solid $divider-gray;
     background-color: $messenger-gray;
-
     box-sizing: border-box;
     padding: 21px 10px 0;
-
-    & li {
-      list-style-type: none;
-    }
   }
 
   &__link {
     margin-bottom: 23px;
   }
 
-  & li:first-child, & li {
+  &__item {
+    list-style-type: none;
+  }
+
+  &__item:first-child, & li {
     border-bottom: 1px solid $divider-gray;
   }
-  main {
+
+  &__main {
     font-family: $basic;
     font-style: normal;
     font-weight: 500;

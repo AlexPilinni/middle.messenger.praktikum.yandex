@@ -4,7 +4,7 @@
   "description": "messenger",
   "main": "index.js",
   "scripts": {
-    "start": "parcel src/pages/index/index.pug --open",
+    "start": "parcel src/pages/index/index.pug --open --port=3000",
     "build": "parcel build",
     "server": "node ./server/app.js"
   },
@@ -43,10 +43,10 @@
   },
   "homepage": "https://github.com/AlexPilinni/middle.yandex.praktikum.messenger#readme",
   "devDependencies": {
-    "@parcel/transformer-pug": "^2.6.2",
-    "@parcel/transformer-sass": "^2.6.2",
-    "express": "^4.18.1",
-    "parcel": "^2.6.2",
-    "path": "^0.12.7"
+    "@parcel/transformer-pug": "2.6.2",
+    "@parcel/transformer-sass": "2.6.2",
+    "express": "4.18.1",
+    "parcel": "2.6.2",
+    "path": "0.12.7"
   }
 }
