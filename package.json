@@ -2,30 +2,15 @@
   "name": "middle.yandex.praktikum.messenger",
   "version": "1.0.0",
   "description": "messenger",
-  "main": "index.js",
   "scripts": {
-    "start": "parcel src/pages/index/index.pug --open --port=3000",
-    "build": "parcel build",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "parcel src/index.pug --open --port=3000",
+    "build": "parcel build src/index.pug",
     "server": "node ./server/app.js"
   },
   "compilerOptions": {
-    "baseUrl": "."
-  },
-  "targets": {
-    "frontend": {
-      "source": [
-        "./src/pages/login/login.pug",
-        "./src/pages/signin/signin.pug",
-        "./src/pages/profile/profile.pug",
-        "./src/pages/messenger/messenger.pug",
-        "./src/pages/edit-password/edit-password.pug",
-        "./src/pages/edit-profile/edit-profile.pug",
-        "./src/pages/404/404.pug",
-        "./src/pages/500/500.pug",
-        "./src/pages/index/index.pug"
-      ],
-      "distDir": "./dist"
-    }
+    "baseUrl": ".",
+    "distDir": "./dist"
   },
   "repository": {
     "type": "git",
