@@ -1,0 +1,8 @@
+extends ../../../src/layouts/layout
+
+block links
+    link(rel="stylesheet", href="404.scss")
+
+block content
+    include ../../components/errors/errors
+    +errors('404', 'Что-то пошло не так...')

@@ -1,0 +1,49 @@
+@import '../../../static/styles/variables';
+@import "../../../src/components/search-input/search-input";
+@import "../../../src/components/link/link";
+@import "../../../src/components/card/card";
+
+.messenger {
+  display: flex;
+  flex-direction: row;
+
+  &__title {
+    display: none;
+  }
+
+  &__panel {
+    width: 310px;
+    min-width: 310px;
+    height: 100vh;
+    border-right: 1px solid $divider-gray;
+    background-color: $messenger-gray;
+    box-sizing: border-box;
+    padding: 21px 10px 0;
+  }
+
+  &__link {
+    margin-bottom: 23px;
+  }
+
+  &__item {
+    list-style-type: none;
+  }
+
+  &__item:first-child, & li {
+    border-bottom: 1px solid $divider-gray;
+  }
+
+  &__main {
+    font-family: $basic;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 12px;
+    color: $gray;
+    width:  100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-self: center;
+  }
+}

@@ -1,0 +1,82 @@
+@import "static/styles/variables";
+
+.search-input {
+  position: relative;
+  width: 100%;
+  height: 32px;
+  background-color: $light-gray;
+  border-radius: 5px;
+
+  .icon {
+    width: 20px;
+    height: 20px;
+    background: url("../../../static/images/search-icon.svg");
+    position: absolute;
+    top: 5px;
+    left: 110px;
+    transition-duration: 0.3s;
+  }
+
+  .label {
+    position: absolute;
+    top: 10px;
+    left: 130px;
+    margin-left: 5px;
+    font-family: $basic;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 12px;
+    color: $gray;
+    opacity: 1;
+    transition-duration: 0.3s;
+  }
+
+  .input {
+    position: absolute;
+    z-index: 1;
+    outline: none;
+    width: 100%;
+    height: 100%;
+    background-color: transparent;
+    border: none;
+    border-radius: 5px;
+    color: $black;
+    font-family: $basic;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 12px;
+
+    &::placeholder {
+      color: transparent;
+    }
+
+    &:focus {
+      padding-left: 40px;
+    }
+  }
+
+  .input:not(:placeholder-shown) ~ .label {
+    opacity: 0;
+    transition-duration: 0.3s;
+  }
+
+  .input:not(:placeholder-shown) + .icon {
+    transform: translateX(-100px);
+  }
+
+  .input:not(:placeholder-shown) {
+    padding-left: 40px;
+  }
+
+  .input:focus + .icon {
+    transform: translateX(-100px);
+    transition-duration: 0.3s;
+  }
+
+  .input:focus ~ .label {
+    opacity: 0;
+    transition-duration: 0.3s;
+  }
+}
