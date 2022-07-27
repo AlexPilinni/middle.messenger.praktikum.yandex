@@ -1,0 +1,11 @@
+/node_modules
+/dist
+/.github
+/.cache
+/.idea
+/.parcel-cache
+
+**/*.min.js
+**/*.pug
+**/*.scss
+**/*.html

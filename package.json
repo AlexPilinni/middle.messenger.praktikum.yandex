@@ -4,9 +4,28 @@
   "description": "messenger",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "parcel src/index.pug --open --port=3000",
+    "start": "parcel index.html --open --port=3000",
+    "serve": "parcel build && node ./server/app.js",
     "build": "parcel build src/index.pug",
-    "server": "node ./server/app.js"
+    "server": "node ./server/app.js",
+    "lint": "eslint src/**",
+    "lint fix": "eslint src/** --fix"
+  },
+  "targets": {
+    "frontend": {
+      "source": [
+        "index.html",
+        "./src/pages/login/index.html",
+        "./src/pages/signin/index.html",
+        "./src/pages/profile/index.html",
+        "./src/pages/messenger/index.html",
+        "./src/pages/edit-profile/index.html",
+        "./src/pages/edit-password/index.html",
+        "./src/pages/404/index.html",
+        "./src/pages/500/index.html"
+      ],
+      "distDir": "./dist"
+    }
   },
   "compilerOptions": {
     "baseUrl": ".",
@@ -28,10 +47,22 @@
   },
   "homepage": "https://github.com/AlexPilinni/middle.yandex.praktikum.messenger#readme",
   "devDependencies": {
-    "@parcel/transformer-pug": "2.6.2",
-    "@parcel/transformer-sass": "2.6.2",
+    "@parcel/transformer-image": "^2.0.0-rc.0",
+    "@parcel/transformer-pug": "^2.0.0-rc.0",
+    "@parcel/transformer-sass": "^2.0.0-rc.0",
+    "@typescript-eslint/eslint-plugin": "^5.31.0",
+    "@typescript-eslint/parser": "^5.31.0",
+    "eslint": "^8.20.0",
     "express": "4.18.1",
-    "parcel": "2.6.2",
-    "path": "0.12.7"
+    "parcel": "^2.0.0-rc.0",
+    "parcel-transformer-pug-precompile": "^1.0.6",
+    "path": "0.12.7",
+    "stylelint": "^14.0.1",
+    "stylelint-config-standard": "^23.0.0",
+    "stylelint-config-standard-scss": "^2.0.1",
+    "typescript": "^4.4.4"
+  },
+  "dependencies": {
+    "@types/pug": "^2.0.6"
   }
 }
