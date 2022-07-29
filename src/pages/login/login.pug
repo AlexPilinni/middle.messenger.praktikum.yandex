@@ -1,14 +1,9 @@
-extends ../../../src/layouts/layout
 
-block links
-    link(rel="stylesheet", href="login.scss")
-
-block content
-    include ../../components/text-input/text-input
-    include ../../components/button/button
-    form.form
-        h1.form__title Вход
-        +input("text", "Логин", "form__login", "login")
-        +input("password", "Пароль", "form__password", "password")
-        +button("submit","Авторизоваться", "form__button")
-        a.form__link(href="../signin/signin.pug")="Нет аккаунта?"
+include ../../components/button/button
+form#form.login-form
+    h1.login-form__title=title
+    loginInputComponent
+    passwordInputComponent
+    buttonComponent
+    //+button("submit","Авторизоваться", "login-form__button")
+    a.login-form__link(href="../signin/index.html")="Нет аккаунта?"

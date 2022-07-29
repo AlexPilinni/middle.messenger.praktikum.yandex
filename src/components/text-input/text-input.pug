@@ -1,16 +1,17 @@
-mixin input(type, label, blockClass, name, error)
-    div.input(class=blockClass)
-        input(
-            type=type
-            class=`input__field`
-            id=name
-            name=name
-            placeholder=label
-        )
-        label(
-            class=`input__label`
-            for=name
-        )= label
-        span(
-            class=`input__error`
-        )= error
+//mixin input(type, label, blockClass, name, error)
+//    div.input(class=blockClass)
+input(
+    type=type
+    class=`${className}__field text-input__field`
+    id=id
+    name=id
+    placeholder=label
+    autocomplete="on"
+)
+label(
+    class=`${className}__label text-input__label`
+    for=id
+)= label
+span(
+    class=`${className}__error text-input__error`
+)= errorMessage
