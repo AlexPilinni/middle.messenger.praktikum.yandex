@@ -25,17 +25,13 @@ function getProps(handleFormService: HandleFormService): LoginPageProps {
         className: 'login-form',
         label: 'Login',
         id: 'login',
-        type: 'text',
-        required: true,
-        errorMessage: null
+        type: 'text'
       }),
       passwordInputComponent: new TextInput({
         className: 'login-form',
         label: 'Password',
         id: 'password',
-        type: 'password',
-        required: true,
-        errorMessage: null
+        type: 'password'
       }),
       buttonComponent: new Button({
         className: 'login-form',
@@ -66,7 +62,7 @@ function getProps(handleFormService: HandleFormService): LoginPageProps {
       ],
       submit: [
         {
-          id: 'form',
+          id: 'login-form',
           fn: handleFormService.handleFormSubmit
         }
       ],

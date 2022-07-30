@@ -10,8 +10,6 @@ interface TextInputProps extends Props {
   label: string;
   type: string;
   clasName?: string;
-  required?: boolean;
-  errorMessage?: string | null
 }
 
 export class TextInput extends Block<TextInputProps> {
