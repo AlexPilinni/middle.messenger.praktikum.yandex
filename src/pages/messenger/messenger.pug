@@ -4,8 +4,6 @@ block links
     link(rel="stylesheet", href="messenger.scss")
 
 block content
-    include ../../components/search-input/search-input
-    include ../../components/link/link
     include ../../components/card/card
     -
       var users = [
@@ -18,8 +16,8 @@ block content
     .messenger
         h1.messenger__title
         aside.messenger__panel
-            +link("messenger__link", "../profile/profile.pug")
-            +search-input("messenger__search", 'Найти чат')
+            linkComponent
+            searchInputComponent
             ul.messenger__list
               each item in users
                   li.messenger__item

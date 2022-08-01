@@ -14,12 +14,15 @@
   color: $gray;
   outline: none;
 
-  &__text {
+  &-text {
     margin-right: 5px;
   }
 
-  &__img {
-    width: 4px;
+  &-img {
+    background-image: url("../../../static/images/arrow-right.svg");
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 6px;
     height: 8px;
   }
 }

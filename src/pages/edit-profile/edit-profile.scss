@@ -20,6 +20,7 @@
   }
 
   &__link {
+    background-image: url("../../../static/images/back.svg");
     text-decoration: none;
     width: 28px;
     height: 28px;
@@ -49,6 +50,9 @@
   }
 
   &__avatar {
+    background-image: url("../../../static/images/avatar.svg");
+    background-position: center;
+    background-repeat: no-repeat;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -70,12 +74,14 @@
 
   &__info {
     margin-bottom: 40px;
+    padding: 0;
   }
 
   &__item {
-    width: 510px;
     display: flex;
     justify-content: space-between;
+    align-items: center;
+    width: 510px;
     font-style: normal;
     font-weight: 500;
     font-size: 13px;
@@ -88,12 +94,13 @@
     color: $black;
   }
 
-  &__value {
-    border: none;
-    outline: none;
-    text-align: right;
-    background-color: transparent;
-    color: $gray;
+  &__text-input {
+    max-width: 50%;
+    min-width: 20%;
+    & .text-input__field, & .text-input__error {
+      outline: none;
+      text-align: right;
+    }
   }
 
   &__button {

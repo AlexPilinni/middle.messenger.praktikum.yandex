@@ -29,6 +29,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    background-image: url("../../../static/images/back.svg");
   }
   &__main {
     display: flex;
@@ -54,6 +55,9 @@
     border-radius: 65px;
     background-color: $light-gray;
     margin-bottom: 21px;
+    background-image: url("../../../static/images/avatar.svg");
+    background-repeat: no-repeat;
+    background-position: center;
   }
 
   &__user {
@@ -90,12 +94,13 @@
   }
 
   & .controls {
-    width: 100% ;
+    width: 510px;
     font-style: normal;
     font-weight: 500;
     font-size: 13px;
     line-height: 13px;
 
+    list-style-type: none;
     &__item {
       width: 510px;
       padding: 10px 0;
@@ -107,6 +112,7 @@
     }
 
     &__link {
+      text-decoration: none;
       color: $blue;
     }
 

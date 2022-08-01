@@ -7,9 +7,10 @@ import {toKebab} from "../../utils";
 
 interface TextInputProps extends Props {
   id: string;
-  label: string;
+  label?: string;
   type: string;
   clasName?: string;
+  initialValue?: string;
 }
 
 export class TextInput extends Block<TextInputProps> {
