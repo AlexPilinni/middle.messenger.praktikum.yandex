@@ -40,6 +40,9 @@ export class HandleFormService {
     const {elements} = formNode;
     const elementsArray = Array.from(elements).filter((element: HTMLInputElement) => Boolean(element.name));
     elementsArray.forEach(element => {
+      if(element.tagName === 'TEXTAREA') {
+        return
+      }
       const mainBlock = element.parentElement
       const errorBlock = (mainBlock as HTMLElement).lastChild;
       const invalid = this.formValidationService.validateInput(element as HTMLInputElement);
@@ -59,7 +62,7 @@ export class HandleFormService {
         const {name, value} = element;
 
         obj[name] = value;
-
+        element.value = ''
         return obj;
       }, {});
   }

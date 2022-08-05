@@ -23,13 +23,13 @@ function getProps(handleFormService: HandleFormService): LoginPageProps {
     children: {
       loginInputComponent: new TextInput({
         className: 'login-form',
-        label: 'Login',
+        label: 'Логин',
         id: 'login',
         type: 'text'
       }),
       passwordInputComponent: new TextInput({
         className: 'login-form',
-        label: 'Password',
+        label: 'Пароль',
         id: 'password',
         type: 'password'
       }),

@@ -1,0 +1,27 @@
+if user
+  header.chat__header
+    .chat__user
+      .chat__user-logo
+      .chat__user-name= user.name
+    button.chat__user-control
+  .chat__body
+    ul.chat__message-day-list
+      each day in user.list
+        li.chat__message-day
+          span.chat__message-date=day.date
+          ul.chat__message-list
+            each message in day.history
+              li(class=`chat__message-item chat__message-item-${message.author}`)
+                p.message__message=message.message
+                span.message__time=message.time
+  form#messenger-form.chat__input-block
+    button.chat__input-file
+    textarea#message.chat__input-field(name="message" autocomplete="on"  wrap="hard"
+      placeholder="Сообщение")
+    button.chat__input-submit(type="submit")
+    span.chat__input-helper
+else
+  .chat__noselect
+    | Выберите чат чтобы отправить сообщение
+
+

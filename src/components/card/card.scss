@@ -1,13 +1,9 @@
 @import '../../../static/styles/variables';
 
-.card {
+.cards {
   display: flex;
-  flex-direction: row;
-  box-sizing: border-box;
-  height: 70px;
-  padding: 12px 0;
-  font-family: $basic;
-  cursor: pointer;
+  flex-direction: column;
+
 
   &__img {
     margin-right: 10px;
@@ -15,7 +11,29 @@
     height: 47px;
     width: 47px;
     min-width: 47px;
-    background-color: $light-gray;
+    background-color: $white;
+    border: 0.5px solid $sky-blue;
+  }
+
+  &__item {
+    display: flex;
+    flex-direction: row;
+    box-sizing: border-box;
+    height: 70px;
+    padding: 12px 10px;
+    font-family: $basic;
+    cursor: pointer;
+    list-style-type: none;
+    border-bottom: 1px solid $divider-gray;
+    outline:none;
+
+    &:hover {
+      background-color: $grey-hover;
+    }
+
+    &:focus {
+      background-color: $blue-light;
+    }
   }
 
   &__main {
@@ -28,6 +46,7 @@
     flex-direction: row;
     justify-content: space-between;
   }
+
   &__name {
     font-style: normal;
     font-weight: 600;

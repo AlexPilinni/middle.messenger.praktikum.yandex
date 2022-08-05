@@ -1,10 +1,11 @@
-mixin card(name,time, message, counter)
-    .card
-        img.card_img
-        .card__main
-            .card__header
-                span.card__name=name
-                span.card__time=time
-            .card__body
-                p.card__message=message
-                .card__counter=counter
+each item in users
+  li.cards__item(tabindex=item.id id=item.id)
+    div.cards__img
+    .cards__main
+      .cards__header
+        span.cards__name=item.name
+        span.cards__time=item.time
+      .cards__body
+        p.cards__message=item.message
+        .cards__counter=item.counter
+

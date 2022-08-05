@@ -24,7 +24,7 @@ const props: ProfilePageProps = {
     display_name: 'Иван',
     phone: '+7 (909) 967 30 30'
   },
-  children: {  },
+  children: {},
 };
 
 class ProfilePage extends Block<ProfilePageProps> {
