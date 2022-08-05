@@ -4,12 +4,14 @@
   "description": "messenger",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "parcel index.html --open --port=3000 --target=frontend",
+    "start": "parcel --open --port=3000 --target=frontend",
     "serve": "parcel build --target=frontend && node ./server/app.js",
-    "build": "parcel build index.html --target=frontend",
+    "build": "parcel build --target=frontend",
     "server": "node ./server/app.js",
-    "lint": "eslint src/**",
-    "lint fix": "eslint src/** --fix"
+    "lint": "eslint src/",
+    "lint fix": "eslint src/ --fix",
+    "stylelint": "stylelint \"src//*.scss\"",
+    "stylelintFixed": "stylelint \"src//*.scss\" --fix"
   },
   "targets": {
     "frontend": {
