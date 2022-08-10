@@ -2,10 +2,6 @@ import { EventBus } from './event-bus';
 import { Props } from './types';
 import {toKebab} from "../utils";
 
-type Meta = {
-  tagName: string;
-  props: Props;
-};
 
 export enum EventsEnum {
 	INIT = 'init',
@@ -14,24 +10,20 @@ export enum EventsEnum {
 	FLOW_RENDER = 'flow:render',
 }
 
-export class Block {
-  props: Props;
+export class Block<T extends Props> {
+
 
   protected eventBus: EventBus;
 
   protected _element: HTMLElement;
-
-  private readonly _meta: Meta;
   protected name: string;
+  protected tagName: string;
+  protected props: T;
 
-  constructor(tagName = 'div', name: string, props: Props = {}) {
+  constructor(tagName = 'div', name: string, props: T) {
     this.eventBus = new EventBus();
     this.name = name;
-    this._meta = {
-      tagName,
-      props,
-    };
-
+    this.tagName = tagName
     this.props = this._makePropsProxy(props);
 
     this._registerEvents(this.eventBus);
@@ -65,7 +57,7 @@ export class Block {
     throw new Error('The render method must be implemented');
   }
 
-  protected makePropsProxy(_: Props): Props | null {
+  protected makePropsProxy(_: T): T | null {
     return null;
   }
 
@@ -93,8 +85,7 @@ export class Block {
   }
 
   protected _createResources() {
-    const { tagName } = this._meta;
-    this._element = this._createDocumentElement(tagName);
+    this._element = this._createDocumentElement(this.tagName);
   }
 
   protected _addComponentNameAttribute() {
@@ -124,15 +115,15 @@ export class Block {
     this._addEvents();
   }
 
-  protected _makePropsProxy(props: Props): Props {
+  protected _makePropsProxy(props: T): T {
     const propsFromCustomMethod = this.makePropsProxy(props);
 
     if (propsFromCustomMethod) {
       return propsFromCustomMethod;
     }
 
-    return new Proxy<Props>(props, {
-      get: (target: Props, prop: string): unknown => {
+    return new Proxy<T>(props, {
+      get: (target: T, prop: string): unknown => {
         const value = target[prop] as unknown;
 
         return (typeof value === 'function') ? value.bind(target) : value;

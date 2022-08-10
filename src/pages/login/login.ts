@@ -4,7 +4,7 @@ import templatePug from './login.pug';
 import {LoginPageProps, props} from './login.service';
 import './login.scss'
 
-class LoginPage extends Block {
+class LoginPage extends Block<LoginPageProps> {
   constructor(props: LoginPageProps) {
     super('main', 'LoginPage', props);
   }

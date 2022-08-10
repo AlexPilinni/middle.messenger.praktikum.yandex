@@ -27,7 +27,7 @@ const props: ProfilePageProps = {
   children: {},
 };
 
-class ProfilePage extends Block {
+class ProfilePage extends Block<ProfilePageProps> {
   constructor(props: ProfilePageProps) {
     super('main', 'Profile', props);
   }

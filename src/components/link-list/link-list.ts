@@ -15,7 +15,7 @@ interface LinkListProps extends Props {
   className: string;
 }
 
-export class LinkList extends Block {
+export class LinkList extends Block<LinkListProps> {
 
 	constructor(props: LinkListProps) {
 		super('ul', 'List', props);

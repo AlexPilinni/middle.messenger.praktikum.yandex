@@ -15,7 +15,7 @@ const props: Props = {
   },
 };
 
-class ClientErrorPage extends Block {
+class ClientErrorPage extends Block<Props> {
   constructor(props: Props) {
     super('main', 'ClientErrorPage', props);
   }

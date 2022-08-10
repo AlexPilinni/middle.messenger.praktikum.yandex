@@ -12,7 +12,7 @@ interface SearchInputProps extends Props {
   clasName?: string;
 }
 
-export class SearchInput extends Block {
+export class SearchInput extends Block<SearchInputProps> {
   constructor(props: SearchInputProps) {
     super('form', 'SearchInput', props);
   }

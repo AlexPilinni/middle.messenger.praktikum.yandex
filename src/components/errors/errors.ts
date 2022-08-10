@@ -11,7 +11,7 @@ interface ErrorsProps extends Props {
   message: string;
 }
 
-export class Errors extends Block {
+export class Errors extends Block<ErrorsProps> {
   constructor(props: ErrorsProps) {
     super('div', 'Errors', props);
   }

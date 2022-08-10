@@ -20,7 +20,7 @@ export interface MessagesListProps extends Props {
   className?: string;
 }
 
-export class MessagesList extends Block {
+export class MessagesList extends Block<MessagesListProps> {
 
   constructor(props: MessagesListProps) {
     super('ul', 'Messages', props);

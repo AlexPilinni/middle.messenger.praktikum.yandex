@@ -9,7 +9,7 @@ interface CardProps extends Props {
   users: Array<User>
 }
 
-export class Card extends Block {
+export class Card extends Block<CardProps> {
   constructor(props: CardProps) {
     super('ul', 'Cards', props);
   }
