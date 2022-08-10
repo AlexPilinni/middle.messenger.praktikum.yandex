@@ -10,9 +10,9 @@ interface LinkProps extends Props {
   clasName?: string;
 }
 
-export class Link extends Block<LinkProps> {
-  constructor(propsObj: LinkProps) {
-    super('a', 'Link', propsObj);
+export class Link extends Block {
+  constructor(props: LinkProps) {
+    super('a', 'Link', props);
   }
 
   _addComponentNameClass() {

@@ -6,9 +6,9 @@ import './messenger.scss';
 import {props} from './messenger.service';
 
 
-class MessengerPage extends Block<Props> {
-  constructor(propsObj: Props) {
-    super('main', 'Messenger', propsObj);
+class MessengerPage extends Block {
+  constructor(props: Props) {
+    super('main', 'Messenger', props);
   }
 
   render() {

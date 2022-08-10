@@ -52,9 +52,9 @@ const props: MainPageProps = {
   },
 };
 
-class MainPage extends Block<MainPageProps> {
-  constructor(propsObj: MainPageProps) {
-    super('main', 'MainPage', propsObj);
+class MainPage extends Block {
+  constructor(props: MainPageProps) {
+    super('main', 'MainPage', props);
   }
 
   render() {

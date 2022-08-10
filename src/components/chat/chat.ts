@@ -19,9 +19,9 @@ interface ChatProps extends Props {
   }
 }
 
-export class Chat extends Block<ChatProps> {
-  constructor(propsObj: ChatProps) {
-    super('div', 'Chat', propsObj);
+export class Chat extends Block {
+  constructor(props: ChatProps) {
+    super('div', 'Chat', props);
   }
 
   _addComponentNameClass() {

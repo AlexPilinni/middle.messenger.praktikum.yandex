@@ -3,9 +3,9 @@ import {compileTemplateToElement} from '../../core/utils';
 import templatePug from './signin.pug';
 import {SigninPageProps, props} from './signin.service';
 import './signin.scss'
-class SigninPage extends Block<SigninPageProps> {
-  constructor(propsObj: SigninPageProps) {
-    super('main', 'SigninPage', propsObj);
+class SigninPage extends Block {
+  constructor(props: SigninPageProps) {
+    super('main', 'SigninPage', props);
   }
 
   render() {

@@ -4,9 +4,9 @@ import templatePug from './edit-profile.pug';
 import './edit-profile.scss'
 import {EditProfilePageProps, props} from './edit-profile.service';
 
-class EditProfilePage extends Block<EditProfilePageProps> {
-  constructor(propsObj: EditProfilePageProps) {
-    super('main', 'EditProfile', propsObj);
+class EditProfilePage extends Block {
+  constructor(props: EditProfilePageProps) {
+    super('main', 'EditProfile', props);
   }
 
   render() {

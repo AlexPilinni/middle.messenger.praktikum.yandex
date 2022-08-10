@@ -14,3 +14,11 @@ export type Props = {
   events?: Events;
   children?: Children;
 };
+
+export type User = {
+  id: string,
+  name: string,
+  time: string,
+  message: string,
+  counter: string
+}

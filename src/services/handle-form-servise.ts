@@ -38,17 +38,14 @@ export class HandleFormService {
   private serializeForm(formNode: HTMLFormElement): Record<string, string> | null {
     let isFormValid = true;
     const {elements} = formNode;
-    const elementsArray = Array.from(elements).filter((element: HTMLInputElement) => Boolean(element.name));
+    const elementsArray = Array.from(elements).filter((element: HTMLInputElement | HTMLTextAreaElement) => Boolean(element.name));
     elementsArray.forEach(element => {
-      if(element.tagName === 'TEXTAREA') {
-        return
-      }
       const mainBlock = element.parentElement
       const errorBlock = (mainBlock as HTMLElement).lastChild;
       const invalid = this.formValidationService.validateInput(element as HTMLInputElement);
       if (invalid) {
         isFormValid = false;
-        (mainBlock as HTMLInputElement).classList.add('invalid');
+        (mainBlock as HTMLElement).classList.add('invalid');
         (errorBlock as HTMLElement).textContent = invalid
       }
     })

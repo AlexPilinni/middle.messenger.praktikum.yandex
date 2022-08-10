@@ -14,7 +14,7 @@ export enum EventsEnum {
 	FLOW_RENDER = 'flow:render',
 }
 
-export class Block<T> {
+export class Block {
   props: Props;
 
   protected eventBus: EventBus;
@@ -38,93 +38,93 @@ export class Block<T> {
     this.eventBus.emit(EventsEnum.INIT);
   }
 
-  init() {
+  protected init() {
     this._createResources();
     this._addComponentNameAttribute();
     this._addComponentNameClass();
     this.eventBus.emit(EventsEnum.FLOW_CDM);
   }
 
-  componentDidMount(): void {
+  protected componentDidMount(): void {
     // Может переопределять пользователь, необязательно трогать
   }
 
-  componentDidUpdate(oldProps: Props, newProps: Props): boolean {
+  protected componentDidUpdate(oldProps: Props, newProps: Props): boolean {
     return oldProps !== newProps;
   }
 
-  // setProps<T>(nextProps: T): void {
-  //   if (!nextProps) {
-  //     return;
-  //   }
-  //
-  //   Object.assign(this.props, nextProps);
-  // }
+  protected setProps<T>(nextProps: T): void {
+    if (!nextProps) {
+      return;
+    }
 
-  render(): DocumentFragment {
+    Object.assign(this.props, nextProps);
+  }
+
+  protected render(): DocumentFragment {
     throw new Error('The render method must be implemented');
   }
 
-  makePropsProxy(_: Props): Props | null {
+  protected makePropsProxy(_: Props): Props | null {
     return null;
   }
 
-  getContent(): HTMLElement {
+  protected getContent(): HTMLElement {
     return this.element;
   }
 
-  // show(): void {
-  //   this.getContent().classList.remove('hidden');
-  // }
-  //
-  // hide(): void {
-  //   this.getContent().classList.add('hidden');
-  // }
+  protected show(): void {
+    this.getContent().classList.remove('hidden');
+  }
 
-  get element(): HTMLElement {
+  protected hide(): void {
+    this.getContent().classList.add('hidden');
+  }
+
+  protected get element(): HTMLElement {
     return this._element;
   }
 
-  _registerEvents(eventBus: EventBus) {
+  protected _registerEvents(eventBus: EventBus) {
     eventBus.on(EventsEnum.INIT, this.init.bind(this));
     eventBus.on(EventsEnum.FLOW_CDM, this._componentDidMount.bind(this));
     eventBus.on(EventsEnum.FLOW_CDU, this._componentDidUpdate.bind(this));
     eventBus.on(EventsEnum.FLOW_RENDER, this._render.bind(this));
   }
 
-  _createResources() {
+  protected _createResources() {
     const { tagName } = this._meta;
     this._element = this._createDocumentElement(tagName);
   }
 
-  _addComponentNameAttribute() {
+  protected _addComponentNameAttribute() {
     this._element.setAttribute('data-component', this.name);
   }
 
-  _addComponentNameClass() {
+  protected _addComponentNameClass() {
     this._element.classList.add(toKebab(this.name));
   }
 
-  _componentDidMount() {
+  protected _componentDidMount() {
     this.componentDidMount();
     this.eventBus.emit(EventsEnum.FLOW_RENDER);
   }
 
-  _componentDidUpdate(oldProps: Props, newProps: Props): void {
+  protected _componentDidUpdate(oldProps: Props, newProps: Props): void {
     const response = this.componentDidUpdate(oldProps, newProps);
     if (response) {
       this.eventBus.emit(EventsEnum.FLOW_RENDER);
     }
   }
 
-  _render(): void {
+  protected _render(): void {
     this._removeEvents();
     this._element.innerHTML = '';
     this._element.appendChild(this.render());
     this._addEvents();
   }
 
-  _makePropsProxy(props: Props): Props {
+  protected _makePropsProxy(props: Props): Props {
     const propsFromCustomMethod = this.makePropsProxy(props);
 
     if (propsFromCustomMethod) {
@@ -149,19 +149,18 @@ export class Block<T> {
         return true;
       },
       deleteProperty: (target: Props, prop: string): boolean => {
-        // eslint-disable-next-line @typescript-eslint/no-dynamic-delete
         delete target[prop];
         return true;
       },
     });
   }
 
-  _createDocumentElement(tagName: string): HTMLElement {
+  protected _createDocumentElement(tagName: string): HTMLElement {
     // Можно сделать метод, который через фрагменты в цикле создаёт сразу несколько блоков
     return document.createElement(tagName);
   }
 
-  _addEvents() {
+  protected _addEvents() {
     const { events = {} } = this.props;
 
     Object.entries(events).forEach(([eventName, eventArray = []]) => {
@@ -176,7 +175,7 @@ export class Block<T> {
     });
   }
 
-  _removeEvents() {
+  protected _removeEvents() {
     const { events = {} } = this.props;
 
     Object.entries(events).forEach(([eventName, eventArray = []]) => {

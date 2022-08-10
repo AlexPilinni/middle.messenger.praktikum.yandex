@@ -15,10 +15,10 @@ interface LinkListProps extends Props {
   className: string;
 }
 
-export class LinkList extends Block<LinkListProps> {
+export class LinkList extends Block {
 
-	constructor(propsObj: LinkListProps) {
-		super('ul', 'List', propsObj);
+	constructor(props: LinkListProps) {
+		super('ul', 'List', props);
 	}
 
   _addComponentNameClass() {

@@ -1,17 +1,17 @@
 import {Block} from '../../core/block';
-import {Props} from '../../core/types';
+import {Props, User} from '../../core/types';
 import {compileTemplateToElement} from '../../core/utils';
 import templatePug from './card.pug';
 import './card.scss';
 import {toKebab} from "../../utils";
 
 interface CardProps extends Props {
-  users: Array<{id: string, name: string, time: string, message: string, counter: string}>
+  users: Array<User>
 }
 
-export class Card extends Block<CardProps> {
-  constructor(propsObj: CardProps) {
-    super('ul', 'Cards', propsObj);
+export class Card extends Block {
+  constructor(props: CardProps) {
+    super('ul', 'Cards', props);
   }
 
   _addComponentNameClass() {

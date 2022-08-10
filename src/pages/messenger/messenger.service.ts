@@ -3,7 +3,7 @@ import {HandleFormService} from "../../services/handle-form-servise";
 import {SearchInput} from "../../components/search-input/search-input";
 import {Link} from "../../components/link/link";
 import {Card} from "../../components/card/card";
-import {Chat, ChatProps} from "../../components/chat/chat";
+import {Chat} from "../../components/chat/chat";
 import {resizeTextArea} from "./utils";
 
 export interface MessengerPageProps extends Props {
@@ -89,11 +89,6 @@ function getProps(handleFormService: HandleFormService): MessengerPageProps {
           id: 'contact-list',
           fn: (event) => {
             console.log((event.currentTarget as HTMLElement).querySelector(':focus'));
-            // (document.querySelector('.messenger__main') as HTMLElement).compileTemplateToElement(asd, asd)
-            // (document.querySelector('.messenger__main') as HTMLElement).innerHTML = `${new Chat({
-            //   id: '2'
-            // })}`
-            // mainUser = combo2
           }
         },
       ],
