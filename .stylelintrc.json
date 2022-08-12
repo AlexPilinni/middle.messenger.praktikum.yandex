@@ -1,0 +1,13 @@
+{
+  "extends": "stylelint-config-standard-scss",
+  "rules": {
+    "color-hex-case": "lower",
+    "no-descending-specificity": null,
+    "selector-class-pattern": null,
+    "no-empty-source": null,
+    "alpha-value-notation": null
+  },
+  "ignoreFiles": [
+    "dist/*"
+  ]
+}

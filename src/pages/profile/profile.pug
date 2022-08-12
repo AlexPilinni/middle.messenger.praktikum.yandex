@@ -1,52 +1,33 @@
-extends ../../../src/layouts/layout
-
-block links
-    link(rel="stylesheet", href="profile.scss")
-
-block content
-    -
-      var user = {
-        email: 'pochta@yandex.ru',
-        login: 'ivanivanov',
-        first_name: 'Иван',
-        second_name: 'Иванов',
-        display_name: 'Иван',
-        phone: '+7 (909) 967 30 30'
-      }
-
-    .profile
-        h1.profile__title
-        aside.profile__panel
-            a(href="../messenger/messenger.pug" class="profile__link")
-                img(src="../../../static/images/back.svg")
-        main.profile__main
-            section.profile__section
-                .profile__avatar
-                    img(src="../../../static/images/avatar.svg")
-                span.profile__user=user.display_name
-                ul.profile__info
-                    li.profile__item
-                        .profile__name Почта
-                        .profile__value= user.email
-                    li.profile__item
-                        .profile__name Логин
-                        .profile__value= user.login
-                    li.profile__item
-                        .profile__name Имя
-                        .profile__value= user.first_name
-                    li.profile__item
-                        .profile__name Фамилия
-                        .profile__value= user.second_name
-                    li.profile__item
-                        .profile__name Имя в чате
-                        .profile__value= user.display_name
-                    li.profile__item
-                        .profile__name Телефон
-                        .profile__value= user.phone
-                ul.controls
-                    li.controls__item
-                        a(href="../edit-profile/edit-profile.pug" class="controls__link") Изменить данные
-                    li.controls__item
-                        a(href="../edit-password/edit-password.pug" class="controls__link") Изменить пароль
-                    li.controls__item
-                        a(href="../login/login.pug" class="controls__link") Выйти
+h1.profile__title
+aside.profile__panel
+    a(href="../messenger/index.html" class="profile__link")
+main.profile__main
+    section.profile__section
+        .profile__avatar
+        span.profile__user=user.display_name
+        ul.profile__info
+            li.profile__item
+                .profile__name Почта
+                .profile__value= user.email
+            li.profile__item
+                .profile__name Логин
+                .profile__value= user.login
+            li.profile__item
+                .profile__name Имя
+                .profile__value= user.first_name
+            li.profile__item
+                .profile__name Фамилия
+                .profile__value= user.second_name
+            li.profile__item
+                .profile__name Имя в чате
+                .profile__value= user.display_name
+            li.profile__item
+                .profile__name Телефон
+                .profile__value= user.phone
+        ul.controls
+            li.controls__item
+                a(href="../edit-profile/index.html" class="controls__link") Изменить данные
+            li.controls__item
+                a(href="../edit-password/index.html" class="controls__link") Изменить пароль
+            li.controls__item
+                a(href="../login/index.html" class="controls__link") Выйти

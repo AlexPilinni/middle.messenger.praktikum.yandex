@@ -1,0 +1,21 @@
+@import "./static/styles/variables";
+
+.list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .item {
+    margin-top: 15px;
+  }
+
+  .link {
+    font-size: 18px;
+    color: $blue;
+
+    &:hover, &:focus {
+      text-decoration: underline;
+      outline:none
+    }
+  }
+}

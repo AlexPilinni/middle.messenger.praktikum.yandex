@@ -1,6 +1,6 @@
 @import "static/styles/variables";
 
-.input {
+.text-input {
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -69,5 +69,13 @@
     font-weight: 300;
     font-size: 10px;
     line-height: 10px;
+  }
+
+  &.invalid &__label {
+    color: $red
+  }
+
+  &.invalid &__field {
+    border-bottom: 2px solid $red;
   }
 }

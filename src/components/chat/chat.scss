@@ -1,0 +1,182 @@
+@import '../../../static/styles/variables';
+
+.chat {
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  position: relative;
+
+  &__header {
+    padding: 0;
+    border-bottom: 1px solid $divider-gray;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__user {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+
+    &-logo {
+      width: 34px;
+      height: 34px;
+      border-radius: 17px;
+      background-color: $messenger-gray;
+      border: 0.5px solid $sky-blue;
+      margin-right: 10px;
+    }
+    &-name {
+      font-family: $basic;
+      color: $black;
+      font-style: normal;
+      font-weight: 600;
+      font-size: 13px;
+      line-height: 13px;
+    }
+    &-control {
+      cursor: pointer;
+      outline: none;
+      width: 25px;
+      height: 25px;
+      background-color: transparent;
+      border-radius: 13px;
+      border: none;
+      background-image: url("../../../static/images/three_points.svg");
+      background-repeat: no-repeat;
+      background-position: center;
+
+      &:focus, &:hover {
+        background-color: $light-gray;
+      }
+    }
+  }
+
+  &__body {
+    max-height: calc(100% - 40px - 46px);
+    height: 100%;
+    box-sizing: border-box;
+    padding: 10px 0;
+  }
+
+  &__message-day-list {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &__message-day {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+  }
+  &__message-date {
+    font-family: $basic;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 12px;
+    color: $gray;
+  }
+  &__message-list {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  &__message-item {
+    color: $black;
+    background-color: $grey-message;
+    box-sizing: border-box;
+    padding: 11px;
+    border-radius: 5px;
+    align-self: flex-start;
+    max-width: 75%;
+    margin: 10px 0;
+    &-me {
+      background-color: $blue-message;
+      align-self: flex-end;
+    }
+  }
+
+  &__messeges {
+    height: auto;
+  }
+  &__input {
+    &-block{
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      padding-top: 10px;
+      box-sizing: border-box;
+      width: 100%;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      border-top: 1px solid $divider-gray;
+      overflow: hidden;
+    }
+    &-file {
+      cursor: pointer;
+      border: none;
+      outline: none;
+      background-color: transparent;
+      width: 32px;
+      height: 32px;
+      background-image: url("../../../static/images/screp.svg");
+      background-repeat: no-repeat;
+      background-position: center;
+    }
+
+    &-field {
+      margin: 0 15px 0 10px;
+      outline: none;
+      width: 100%;
+      height: 32px;
+      resize: none;
+      background-color: $light-gray;
+      border-radius: 16px;
+      box-sizing: border-box;
+      font-family: $basic;
+      font-style: normal;
+      font-weight: 500;
+      font-size: 12px;
+      line-height: 12px;
+      padding: 10px 20px;
+      color: $black;
+      overflow: hidden;
+
+      &::placeholder {
+        color: $gray;
+      }
+    }
+
+    &-submit {
+      cursor: pointer;
+      background-color: $blue;
+      width: 32px;
+      height: 32px;
+      outline: none;
+      border: none;
+      border-radius: 16px;
+      background-image: url("../../../static/images/arrow_right.svg");
+      background-repeat: no-repeat;
+      background-position: center;
+    }
+    &-helper {
+      position: absolute;
+      z-index: -1;
+      visibility: hidden;
+    }
+  }
+}

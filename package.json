@@ -1,12 +1,33 @@
 {
-  "name": "middle.yandex.praktikum.messenger",
+  "name": "middle.messenger.praktikum.yandex",
   "version": "1.0.0",
   "description": "messenger",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "parcel src/index.pug --open --port=3000",
-    "build": "parcel build src/index.pug",
-    "server": "node ./server/app.js"
+    "start": "parcel --open --port=3000 --target=frontend",
+    "serve": "parcel build --target=frontend && node ./server/app.js",
+    "build": "parcel build --target=frontend",
+    "server": "node ./server/app.js",
+    "lint": "eslint src/",
+    "lint fix": "eslint src/ --fix",
+    "stylelint": "stylelint \"src//*.scss\"",
+    "stylelintFixed": "stylelint \"src//*.scss\" --fix"
+  },
+  "targets": {
+    "frontend": {
+      "source": [
+        "index.html",
+        "./src/pages/login/index.html",
+        "./src/pages/signin/index.html",
+        "./src/pages/profile/index.html",
+        "./src/pages/messenger/index.html",
+        "./src/pages/edit-profile/index.html",
+        "./src/pages/edit-password/index.html",
+        "./src/pages/404/index.html",
+        "./src/pages/500/index.html"
+      ],
+      "distDir": "./dist"
+    }
   },
   "compilerOptions": {
     "baseUrl": ".",
@@ -14,7 +35,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/AlexPilinni/middle.yandex.praktikum.messenger.git"
+    "url": "git+https://github.com/AlexPilinni/middle.messenger.praktikum.yandex.git"
   },
   "keywords": [
     "messenger",
@@ -24,14 +45,26 @@
   "author": "Alex Pilin",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/AlexPilinni/middle.yandex.praktikum.messenger/issues"
+    "url": "https://github.com/AlexPilinni/middle.messenger.praktikum.yandex/issues"
   },
-  "homepage": "https://github.com/AlexPilinni/middle.yandex.praktikum.messenger#readme",
+  "homepage": "https://github.com/AlexPilinni/middle.messenger.praktikum.yandex#readme",
   "devDependencies": {
-    "@parcel/transformer-pug": "2.6.2",
-    "@parcel/transformer-sass": "2.6.2",
+    "@parcel/transformer-image": "2.7.0",
+    "@parcel/transformer-pug": "2.7.0",
+    "@parcel/transformer-sass": "2.7.0",
+    "@typescript-eslint/eslint-plugin": "5.31.0",
+    "@typescript-eslint/parser": "5.31.0",
+    "eslint": "8.20.0",
+    "parcel": "2.7.0",
+    "parcel-transformer-pug-precompile": "1.0.6",
+    "stylelint": "14.9.1",
+    "stylelint-config-standard": "23.0.0",
+    "stylelint-config-standard-scss": "5.0.0",
+    "typescript": "4.7.4"
+  },
+  "dependencies": {
+    "@types/pug": "2.0.6",
     "express": "4.18.1",
-    "parcel": "2.6.2",
     "path": "0.12.7"
   }
 }

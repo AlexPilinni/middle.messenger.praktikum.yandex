@@ -1,31 +1,7 @@
-extends ../../../src/layouts/layout
-
-block links
-    link(rel="stylesheet", href="messenger.scss")
-
-block content
-    include ../../components/search-input/search-input
-    include ../../components/link/link
-    include ../../components/card/card
-    -
-      var users = [
-          {name: 'Алексей', time: "10:20", message: "Го гулять", counter: "3"},
-          {name: 'Алексей', time: "10:20", message: "Го гулять", counter: "3"},
-          {name: 'Алексей', time: "10:20", message: "Го гулять", counter: "3"},
-          {name: 'Алексей', time: "10:20", message: "Го гулять", counter: "3"},
-          {name: 'Алексей', time: "10:20", message: "Го гулять", counter: "3"}
-      ]
-    .messenger
-        h1.messenger__title
-        aside.messenger__panel
-            +link("messenger__link", "../profile/profile.pug")
-            +search-input("messenger__search", 'Найти чат')
-            ul.messenger__list
-              each item in users
-                  li.messenger__item
-                      +card(item.name, item.time, item.message, item.counter)
-        main.messenger__main
-            .messenger__noselect
-                | Выберите чат чтобы отправить сообщение
-
-
+h1.messenger__title
+aside.messenger__panel
+  linkComponent
+  searchInputComponent
+  cardsComponent#contact-list
+main.messenger__main
+  chat

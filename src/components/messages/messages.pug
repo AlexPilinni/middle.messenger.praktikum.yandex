@@ -1,0 +1,8 @@
+each day in user.list
+  li.chat__message-day
+    span.chat__message-date=day.date
+    ul.chat__message-list
+      each message in day.history
+        li(class=`chat__message-item chat__message-item-${message.author}`)
+          p.message__message=message.message
+          span.message__time=message.time
