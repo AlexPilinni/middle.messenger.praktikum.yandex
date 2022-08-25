@@ -4,9 +4,9 @@ import templatePug from './login.pug';
 import {LoginPageProps, props} from './login.service';
 import './login.scss'
 
-class LoginPage extends Block<LoginPageProps> {
-  constructor(props: LoginPageProps) {
-    super('main', 'LoginPage', props);
+export class LoginPage extends Block<LoginPageProps> {
+  constructor(objProps: LoginPageProps = props, rootId?: string) {
+    super('main', objProps, rootId);
   }
 
   render() {
@@ -14,11 +14,11 @@ class LoginPage extends Block<LoginPageProps> {
   }
 
   componentDidMount() {
-    const root = document.getElementById('app');
+    const root = document.getElementById(this._meta.rootId);
 
     root?.appendChild(this.getContent());
   }
 }
 
-new LoginPage(props);
+// new LoginPage(props);
 

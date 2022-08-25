@@ -1,5 +1,12 @@
 import { Block } from './block';
 
+
+export type RouteProps = {
+  rootQuery: string;
+}
+
+export type BlockInheritor = new (propsObj: Props | undefined, rootId: string) => InstanceType<typeof Block>;
+
 type ElementEvent = {
   id: string;
   fn: (event: Event) => void;

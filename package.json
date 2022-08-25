@@ -5,6 +5,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "parcel --open --port=3000 --target=frontend",
+    "start:dev": "parcel --open",
     "serve": "parcel build --target=frontend && node ./server/app.js",
     "build": "parcel build --target=frontend",
     "server": "node ./server/app.js",
