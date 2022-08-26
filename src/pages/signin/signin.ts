@@ -4,9 +4,9 @@ import templatePug from './signin.pug';
 import {SigninPageProps, props} from './signin.service';
 import './signin.scss'
 
-class SigninPage extends Block<SigninPageProps> {
-  constructor(props: SigninPageProps) {
-    super('main', 'SigninPage', props);
+export class SigninPage extends Block<SigninPageProps> {
+  constructor(propsObj: SigninPageProps = props, rootId?: string) {
+    super('main', 'SigninPage', propsObj, rootId);
   }
 
   render() {
@@ -20,4 +20,4 @@ class SigninPage extends Block<SigninPageProps> {
   }
 }
 
-new SigninPage(props);
+// new SigninPage(props);

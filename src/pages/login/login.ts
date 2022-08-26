@@ -2,11 +2,11 @@ import {Block} from '../../core/block';
 import {compileTemplateToElement} from '../../core/utils';
 import templatePug from './login.pug';
 import {LoginPageProps, props} from './login.service';
-import './login.scss'
+import './login.scss';
 
 export class LoginPage extends Block<LoginPageProps> {
   constructor(objProps: LoginPageProps = props, rootId?: string) {
-    super('main', objProps, rootId);
+    super('main', 'LoginPage', objProps, rootId);
   }
 
   render() {

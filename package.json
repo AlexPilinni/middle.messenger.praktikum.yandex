@@ -17,15 +17,7 @@
   "targets": {
     "frontend": {
       "source": [
-        "index.html",
-        "./src/pages/login/index.html",
-        "./src/pages/signin/index.html",
-        "./src/pages/profile/index.html",
-        "./src/pages/messenger/index.html",
-        "./src/pages/edit-profile/index.html",
-        "./src/pages/edit-password/index.html",
-        "./src/pages/404/index.html",
-        "./src/pages/500/index.html"
+        "index.html"
       ],
       "distDir": "./dist"
     }

@@ -2,6 +2,7 @@ import {Children, Props} from '../../core/types';
 import {TextInput} from "../../components/text-input/text-input";
 import {HandleFormService} from "../../services/handle-form-servise";
 import {Button} from "../../components/button/button";
+import {router} from "../../index";
 
 export interface SigninPageProps extends Props {
   title: string;
@@ -70,6 +71,15 @@ function getProps(handleFormService: HandleFormService): SigninPageProps {
       })
     },
     events: {
+      click: [
+        {
+          id: 'goToLogin',
+          fn: event => {
+            event.preventDefault();
+            router.go('/');
+          },
+        },
+      ],
       focus: [
         {
           id: 'email',
