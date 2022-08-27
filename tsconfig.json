@@ -4,6 +4,7 @@
     "lib": ["esnext", "dom"],
     "rootDir": "src",
     "outDir": "dist",
+//    "moduleResolution": "node",
     "declaration": false,
     "module": "commonjs",
     "noImplicitAny": true,

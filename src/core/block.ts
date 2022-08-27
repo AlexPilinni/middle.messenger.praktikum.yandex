@@ -1,11 +1,14 @@
 import { EventBus } from './event-bus';
-import { Props } from './types';
 import {toKebab} from "../utils";
+import {Events, Props, StoreEvent} from './types';
+import {cloneDeep, isDeepEqual} from "../utils";
+import store from "../store/store";
 
 type Meta = {
   tagName: string;
   props: Props;
-  rootId: string;
+  rootId?: string;
+  events: Events;
 };
 
 export enum EventsEnum {
@@ -17,7 +20,6 @@ export enum EventsEnum {
 
 export class Block<T extends Props> {
 
-
   protected eventBus: EventBus;
 
   protected readonly _meta: Meta;
@@ -26,7 +28,9 @@ export class Block<T extends Props> {
   protected tagName: string;
   protected props: T;
 
-  constructor(tagName = 'div', name: string, props: T, rootId = 'app') {
+  private _storeEvents: StoreEvent[] = [];
+
+  constructor(tagName = 'div', name: string, props: T, events: Events = {}, rootId?: string) {
     this.eventBus = new EventBus();
     this.name = name;
     this.tagName = tagName
@@ -34,6 +38,7 @@ export class Block<T extends Props> {
     this._meta = {
       tagName,
       props,
+      events,
       rootId
     };
     this.props = this._makePropsProxy(props);
@@ -53,7 +58,7 @@ export class Block<T extends Props> {
   }
 
   protected componentDidUpdate(oldProps: Props, newProps: Props): boolean {
-    return oldProps !== newProps;
+    return isDeepEqual(oldProps, newProps);
   }
 
   protected setProps<T>(nextProps: T): void {
@@ -68,6 +73,10 @@ export class Block<T extends Props> {
     throw new Error('The render method must be implemented');
   }
 
+  protected subscribeToStoreEvent(eventName: string, callback: (path: string) => void): void {
+    store.on(eventName, callback, this);
+    this._storeEvents.push({eventName, callback});
+  }
   protected makePropsProxy(_: T): T | null {
     return null;
   }
@@ -84,7 +93,7 @@ export class Block<T extends Props> {
     this.getContent().classList.add('hidden');
   }
 
-  destroy(): void {
+  public destroy(): void {
     this._componentWillUnmount();
   }
 
@@ -92,18 +101,18 @@ export class Block<T extends Props> {
     return this._element;
   }
 
-  _registerEventBusEvents(eventBus: EventBus) {
-    eventBus.on(EventsEnum.INIT, this.init.bind(this));
-    eventBus.on(EventsEnum.FLOW_CDM, this._componentDidMount.bind(this));
-    eventBus.on(EventsEnum.FLOW_CDU, this._componentDidUpdate.bind(this));
-    eventBus.on(EventsEnum.FLOW_RENDER, this._render.bind(this));
+  protected _registerEventBusEvents(eventBus: EventBus) {
+    eventBus.on(EventsEnum.INIT, this.init.bind(this), this);
+    eventBus.on(EventsEnum.FLOW_CDM, this._componentDidMount.bind(this), this);
+    eventBus.on(EventsEnum.FLOW_CDU, this._componentDidUpdate.bind(this), this);
+    eventBus.on(EventsEnum.FLOW_RENDER, this._render.bind(this), this);
   }
 
-  _removeEventBusEvents() {
-    this.eventBus.off(EventsEnum.INIT, this.init.bind(this));
-    this.eventBus.off(EventsEnum.FLOW_CDM, this._componentDidMount.bind(this));
-    this.eventBus.off(EventsEnum.FLOW_CDU, this._componentDidUpdate.bind(this));
-    this.eventBus.off(EventsEnum.FLOW_RENDER, this._render.bind(this));
+  protected _removeEventBusEvents() {
+    this.eventBus.off(EventsEnum.INIT, this.init.bind(this), this);
+    this.eventBus.off(EventsEnum.FLOW_CDM, this._componentDidMount.bind(this), this);
+    this.eventBus.off(EventsEnum.FLOW_CDU, this._componentDidUpdate.bind(this), this);
+    this.eventBus.off(EventsEnum.FLOW_RENDER, this._render.bind(this), this);
   }
 
   protected _createResources() {
@@ -125,20 +134,22 @@ export class Block<T extends Props> {
   }
 
   protected _componentDidUpdate(oldProps: Props, newProps: Props): void {
-    const response = this.componentDidUpdate(oldProps, newProps);
-    if (response) {
+    const isEqual = this.componentDidUpdate(oldProps, newProps);
+
+    if (!isEqual) {
       this.eventBus.emit(EventsEnum.FLOW_RENDER);
     }
   }
-  _componentWillUnmount() {
-    this._removeEventBusEvents();
-    this._removeEvents();
-    const root = document.getElementById(this._meta.rootId);
+
+  protected _componentWillUnmount() {
+    this._removeAllEvents();
+    const root = document.getElementById(this._meta.rootId || '');
 
     if (root) {
       root.innerHTML = '';
     }
   }
+
   protected _render(): void {
     this._removeEvents();
     this._element.innerHTML = '';
@@ -164,9 +175,11 @@ export class Block<T extends Props> {
         prop: string,
         value: string | Record<string, unknown>,
       ): boolean => {
+
+        const targetCopy = cloneDeep(target);
         target[prop] = value;
 
-        this.eventBus.emit(EventsEnum.FLOW_CDU, { ...target }, target);
+        this.eventBus.emit(EventsEnum.FLOW_CDU, targetCopy, target);
 
         return true;
       },
@@ -183,13 +196,15 @@ export class Block<T extends Props> {
   }
 
   protected _addEvents() {
-    const { events = {} } = this.props;
+    const {events = {}} = this._meta;
 
     Object.entries(events).forEach(([eventName, eventArray = []]) => {
-      eventArray.forEach(({ id, fn }) => {
+      eventArray.forEach(({id, fn}) => {
         const nodeElement = this.element.querySelector(`#${id}`);
+
         if (!nodeElement) {
-          throw new Error(`AddEvents function failed with the element id ${id}`);
+          console.error(`AddEvents function has not been able to find an element with id ${id}`);
+          return;
         }
 
         nodeElement.addEventListener(eventName, fn);
@@ -198,16 +213,29 @@ export class Block<T extends Props> {
   }
 
   protected _removeEvents() {
-    const { events = {} } = this.props;
+    const {events = {}} = this._meta;
 
     Object.entries(events).forEach(([eventName, eventArray = []]) => {
-      eventArray.forEach(({ id, fn }) => {
+      eventArray.forEach(({id, fn}) => {
         const nodeElement = this.element.querySelector(`#${id}`);
+
         if (nodeElement) {
           nodeElement.removeEventListener(eventName, fn);
         }
       });
     });
+  }
+
+  protected _removeStoreEvents() {
+    this._storeEvents.forEach(({eventName, callback}) => {
+      store.off(eventName, callback, this);
+    });
+  }
+
+  protected _removeAllEvents(): void {
+    this._removeEventBusEvents();
+    this._removeEvents();
+    this._removeStoreEvents();
   }
 }
 

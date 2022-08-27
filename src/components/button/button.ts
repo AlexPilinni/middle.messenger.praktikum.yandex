@@ -1,9 +1,10 @@
 import {Block} from '../../core/block';
-import {Props} from '../../core/types';
-import {compileTemplateToElement} from '../../core/utils';
+import {Events, Props} from '../../core/types';
+import {compileTemplateToElement} from '../../core/utils/compile-template';
 import templatePug from './button.pug';
 import './button.scss';
 import {toKebab} from "../../utils";
+import {mapStateToPropsCallBack} from "../../store/utils";
 
 interface ButtonProps extends Props {
   type?: string;
@@ -12,8 +13,9 @@ interface ButtonProps extends Props {
 }
 
 export class Button extends Block<ButtonProps> {
-  constructor(props: ButtonProps) {
-    super('button', 'Button', props);
+  constructor(props: ButtonProps, eventName: string, events?: Events) {
+    super('button', 'Button', props, events);
+    this.subscribeToStoreEvent(eventName, mapStateToPropsCallBack);
   }
 
   _addComponentNameClass() {
@@ -23,6 +25,6 @@ export class Button extends Block<ButtonProps> {
 
 
   render() {
-    return compileTemplateToElement(templatePug, this.props);
+    return compileTemplateToElement(templatePug, this.props, '', this._meta.events);
   }
 }

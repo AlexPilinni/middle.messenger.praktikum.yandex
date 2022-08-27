@@ -43,3 +43,72 @@ export function queryStringify(data: Indexed | undefined): string {
 
   return '?' + getParams(data).map(arr => arr.join('=')).join('&');
 }
+
+export function isDeepEqual(a: Indexed, b: Indexed): boolean {
+  const aKeys = Object.keys(a);
+  const bKeys = Object.keys(b);
+
+  if (aKeys.length !== bKeys.length) {
+    return false;
+  }
+
+  return aKeys.every((key: string) => {
+    if (isObject(a[key]) || isArray(a[key])) {
+      if (isObject(b[key]) || isArray(b[key])) {
+        return isDeepEqual(a[key] as Indexed, b[key] as Indexed);
+      }
+      return false;
+    } else {
+      return a[key] === b[key];
+    }
+  })
+}
+
+export function cloneDeep<T extends object = object>(obj: T) {
+  return (function _cloneDeep(item: T): T | Date | Set<unknown> | Map<unknown, unknown> | object | T[] {
+    if (item === null || typeof item !== "object") {
+      return item;
+    }
+
+    if (item instanceof Date) {
+      return new Date(item.valueOf());
+    }
+
+    if (item instanceof Array) {
+      const copy = [] as unknown[];
+
+      item.forEach((_, i) => (copy[i] = _cloneDeep(item[i])));
+
+      return copy;
+    }
+
+    if (item instanceof Set) {
+      const copy = new Set();
+
+      item.forEach(v => copy.add(_cloneDeep(v)));
+
+      return copy;
+    }
+
+    if (item instanceof Map) {
+      const copy = new Map();
+
+      item.forEach((v, k) => copy.set(k, _cloneDeep(v)));
+
+      return copy;
+    }
+
+    if (item instanceof Object) {
+      const copy: object = {};
+
+      Object.getOwnPropertySymbols(item).forEach(s => ((copy as any)[s] = _cloneDeep((item as any)[s])));
+
+      Object.keys(item).forEach(k => ((copy as any)[k] = _cloneDeep((item as any)[k])));
+
+      return copy;
+    }
+
+    throw new Error(`Unable to copy object: ${item}`);
+  })(obj);
+}
+

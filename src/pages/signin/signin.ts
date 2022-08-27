@@ -1,23 +1,26 @@
 import {Block} from '../../core/block';
-import {compileTemplateToElement} from '../../core/utils';
+import {compileTemplateToElement} from '../../core/utils/compile-template';
 import templatePug from './signin.pug';
-import {SigninPageProps, props} from './signin.service';
-import './signin.scss'
+import './signin.scss';
+import {SignInPageProps} from "./types";
+import {SIGNIN_INITIAL_STATE} from "../../store/initialState/signin-initial-state";
+import {signInEvents} from "./signin.service";
+import {Events} from "../../core/types";
 
-export class SigninPage extends Block<SigninPageProps> {
-  constructor(propsObj: SigninPageProps = props, rootId?: string) {
-    super('main', 'SigninPage', propsObj, rootId);
+export class SignInPage extends Block<SignInPageProps> {
+  constructor(objProps: SignInPageProps = SIGNIN_INITIAL_STATE, events:Events = signInEvents,  rootId?: string) {
+    super('main', 'SignInPage', objProps, events, rootId);
   }
 
   render() {
-    return compileTemplateToElement(templatePug, this.props);
+    return compileTemplateToElement(templatePug, this.props,'SignInPage', this._meta.events);
   }
 
   componentDidMount() {
-    const root = document.getElementById('app');
+    const root = document.getElementById(this._meta.rootId || 'app');
 
     root?.appendChild(this.getContent());
   }
 }
 
-// new SigninPage(props);
+

@@ -1,35 +1,46 @@
-import { AnyFunc } from './types';
+type AnyFunc = (...args: any[]) => any | void;
 
 export class EventBus {
-  private readonly listeners: Record<string, AnyFunc[]>;
+  private readonly listeners: Record<string, {subscriber: unknown, callback: AnyFunc}[]>;
 
   constructor() {
     this.listeners = {};
   }
 
-  on(event: string, callback: AnyFunc) {
+  on(event: string, callback: AnyFunc, subscriber: unknown) {
     if (!this.listeners[event]) {
       this.listeners[event] = [];
     }
 
-    this.listeners[event].push(callback);
-  }
+    const isAlreadyRegistered = this.listeners[event]
+      .some(listener => listener.subscriber === subscriber && listener.callback === callback);
 
-  off(event: string, callback: AnyFunc) {
-    if (!this.listeners[event]) {
-      throw new Error(`Нет события: ${event}`);
+    if (isAlreadyRegistered) {
+      return;
     }
 
-    this.listeners[event] = this.listeners[event].filter((fn) => fn !== callback);
+    this.listeners[event].push({
+      subscriber,
+      callback
+    });
   }
 
-  emit(event: string, ...args: unknown[]) {
+  off(event: string, callback: AnyFunc, subscriber: unknown) {
     if (!this.listeners[event]) {
-      throw new Error(`Нет события: ${event}`);
+      throw new Error(`There is no event: ${event}`);
     }
 
-    this.listeners[event].forEach((fn) => {
-      fn(...args);
+    this.listeners[event] = this.listeners[event]
+      .filter(listener => listener.subscriber !== subscriber || listener.callback !== callback);
+  }
+
+  emit(event: string, ...args: any[]) {
+    if (!this.listeners[event]) {
+      throw new Error(`There is no event: ${event}`);
+    }
+
+    this.listeners[event].forEach(listener => {
+      listener.callback.call(listener.subscriber, ...args);
     });
   }
 }

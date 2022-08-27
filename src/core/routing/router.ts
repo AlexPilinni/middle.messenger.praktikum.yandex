@@ -38,7 +38,8 @@ export class Router {
 
   start() {
     window.onpopstate = (event) => {
-      this._onRoute((event.currentTarget as HTMLFormElement).location.pathname);
+      this._onRoute(event.currentTarget.location.pathname);
+      // this._onRoute((event.currentTarget as HTMLFormElement).location.pathname);
     }
 
     this._onRoute(window.location.pathname);

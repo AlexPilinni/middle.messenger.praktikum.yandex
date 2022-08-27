@@ -1,144 +1,45 @@
-import {Children, Props} from '../../core/types';
-import {TextInput} from "../../components/text-input/text-input";
 import {HandleFormService} from "../../services/handle-form-servise";
-import {Button} from "../../components/button/button";
 import {router} from "../../index";
+import {UserSignInController} from "../../controllers/auth/signin-controller";
+import {Events} from "../../core/types";
 
-import {UserSignUpController} from "../../controllers/auth/signup-controller";
-
-export interface SigninPageProps extends Props {
-  title: string;
-  children?: Children;
-}
-
-class SigninService {
+class SignInService {
   protected handleFormService: HandleFormService
-  public props: SigninPageProps
+  public signInEvents: Events
   constructor() {
     this.handleFormService = new HandleFormService()
-    this.props = getProps(this.handleFormService)
+    this.signInEvents = getProps(this.handleFormService)
   }
 }
 
-function getProps(handleFormService: HandleFormService): SigninPageProps {
+function getProps(handleFormService: HandleFormService): Events {
   return {
-    title: 'Вход',
-    children: {
-      emailInputComponent: new TextInput({
-        className: 'signin-form',
-        label: 'Почта',
-        id: 'email',
-        type: 'text',
-      }),
-      loginInputComponent: new TextInput({
-        className: 'signin-form',
-        label: 'Логин',
-        id: 'login',
-        type: 'text',
-      }),
-      firstnameInputComponent: new TextInput({
-        className: 'signin-form',
-        label: 'Имя',
-        id: 'first_name',
-        type: 'text',
-      }),
-      secondnameInputComponent: new TextInput({
-        className: 'signin-form',
-        label: 'Фамилия',
-        id: 'second_name',
-        type: 'text',
-      }),
-      phoneInputComponent: new TextInput({
-        className: 'signin-form',
-        label: 'Телефон',
-        id: 'phone',
-        type: 'text',
-      }),
-      passwordInputComponent: new TextInput({
-        className: 'signin-form',
-        label: 'Пароль',
-        id: 'password',
-        type: 'password',
-      }),
-      repeatPasswordInputComponent: new TextInput({
-        className: 'signin-form',
-        label: 'Пароль(еще раз)',
-        id: 'repeat-password',
-        type: 'password',
-      }),
-      buttonComponent: new Button({
-        className: 'signin-form',
-        type: 'submit',
-        text: 'Зарегистрироваться'
-      })
-    },
-    events: {
       click: [
         {
-          id: 'goToLogin',
+          id: 'goToSignIn',
           fn: event => {
             event.preventDefault();
-            router.go('/');
+            router.go('/signup');
           },
         },
       ],
       focus: [
         {
-          id: 'email',
-          fn: handleFormService.handleFieldFocus
-        },
-        {
           id: 'login',
           fn: handleFormService.handleFieldFocus
         },
         {
-          id: 'first_name',
-          fn: handleFormService.handleFieldFocus
-        },
-        {
-          id: 'second_name',
-          fn: handleFormService.handleFieldFocus
-        },
-        {
-          id: 'phone',
-          fn: handleFormService.handleFieldFocus
-        },
-        {
           id: 'password',
-          fn: handleFormService.handleFieldFocus
-        },
-        {
-          id: 'repeat-password',
           fn: handleFormService.handleFieldFocus
         },
       ],
       blur: [
         {
-          id: 'email',
-          fn: handleFormService.handleFieldBlur
-        },
-        {
           id: 'login',
           fn: handleFormService.handleFieldBlur
         },
         {
-          id: 'first_name',
-          fn: handleFormService.handleFieldBlur
-        },
-        {
-          id: 'second_name',
-          fn: handleFormService.handleFieldBlur
-        },
-        {
-          id: 'phone',
-          fn: handleFormService.handleFieldBlur
-        },
-        {
           id: 'password',
-          fn: handleFormService.handleFieldBlur
-        },
-        {
-          id: 'repeat-password',
           fn: handleFormService.handleFieldBlur
         },
       ],
@@ -147,20 +48,18 @@ function getProps(handleFormService: HandleFormService): SigninPageProps {
           id: 'signin-form',
           fn: event => {
             const formData = handleFormService.handleFormSubmit(event);
-            console.log('formData', formData)
+
             if (!formData) {
-              console.log('не зашло')
               return;
             }
-
-            UserSignUpController.signUp(formData);
-          },
+            console.log(formData)
+            UserSignInController.signIn(formData);
+          }
         }
       ],
     }
-  }
 }
 
-const signinService = new SigninService();
+const signInService = new SignInService();
 
-export const {props} = signinService;
+export const {signInEvents} = signInService;

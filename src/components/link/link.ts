@@ -1,9 +1,10 @@
 import {Block} from '../../core/block';
-import {Props} from '../../core/types';
-import {compileTemplateToElement} from '../../core/utils';
+import {Events, Props} from '../../core/types';
+import {compileTemplateToElement} from '../../core/utils/compile-template';
 import templatePug from './link.pug';
 import './link.scss';
 import {toKebab} from "../../utils";
+import {mapStateToPropsCallBack} from "../../store/utils";
 
 interface LinkProps extends Props {
   href: string;
@@ -11,8 +12,10 @@ interface LinkProps extends Props {
 }
 
 export class Link extends Block<LinkProps> {
-  constructor(props: LinkProps) {
-    super('a', 'Link', props);
+  constructor(props: LinkProps, eventName: string, events?: Events) {
+    super('a', 'Link', props, events);
+
+    this.subscribeToStoreEvent(eventName, mapStateToPropsCallBack);
   }
 
   _addComponentNameClass() {
@@ -25,6 +28,6 @@ export class Link extends Block<LinkProps> {
   }
 
   render() {
-    return compileTemplateToElement(templatePug, this.props);
+    return compileTemplateToElement(templatePug, this.props, '', this._meta.events);
   }
 }

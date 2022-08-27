@@ -1,6 +1,6 @@
 import {Router} from "./core/routing/router";
-import {LoginPage} from "./pages/login/login";
-import {SigninPage} from "./pages/signin/signin";
+import {SignInPage} from "./pages/signin/signin";
+import {SignUpPage} from "./pages/signup/signup";
 import {ProfilePage} from "./pages/profile/profile";
 import {MessengerPage} from "./pages/messenger/messenger";
 import {EditProfilePage} from "./pages/edit-profile/edit-profile";
@@ -9,15 +9,13 @@ import {ClientErrorPage} from "./pages/404/404";
 import {ServerErrorPage} from "./pages/500/500";
 
 export const router = new Router("app");
-
 router
-  .use("/", LoginPage)
-  .use("/signin", SigninPage)
+  .use("/", SignInPage)
+  .use("/signup", SignUpPage)
   .use("/messenger", MessengerPage)
   .use("/profile", ProfilePage)
   .use("/edit-profile", EditProfilePage)
   .use("/edit-password", EditPasswordPage)
-  .use("/edit-password", EditPasswordPage)
-  .use("/404", ClientErrorPage)
-  .use("/404", ServerErrorPage)
+  .use("/500", ServerErrorPage)
+  .setFallBack("/404", ClientErrorPage)
   .start();

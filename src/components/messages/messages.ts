@@ -1,9 +1,10 @@
 import {Block} from '../../core/block';
-import {Props} from '../../core/types';
-import {compileTemplateToElement} from '../../core/utils';
+import {Events, Props} from '../../core/types';
+import {compileTemplateToElement} from '../../core/utils/compile-template';
 import templatePug from './messages.pug';
 import './messages.scss';
 import {toKebab} from "../../utils";
+import {mapStateToPropsCallBack} from "../../store/utils";
 
 
 export interface MessagesListProps extends Props {
@@ -22,8 +23,10 @@ export interface MessagesListProps extends Props {
 
 export class MessagesList extends Block<MessagesListProps> {
 
-  constructor(props: MessagesListProps) {
-    super('ul', 'Messages', props);
+  constructor(props: MessagesListProps, eventName: string, events?: Events) {
+    super('ul', 'Messages', props, events);
+
+    this.subscribeToStoreEvent(eventName, mapStateToPropsCallBack);
   }
 
   _addComponentNameClass() {
@@ -31,6 +34,6 @@ export class MessagesList extends Block<MessagesListProps> {
   }
 
   render() {
-    return compileTemplateToElement(templatePug, this.props);
+    return compileTemplateToElement(templatePug, this.props, '', this._meta.events);
   }
 }

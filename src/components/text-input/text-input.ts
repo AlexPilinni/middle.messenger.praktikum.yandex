@@ -1,9 +1,10 @@
 import {Block} from '../../core/block';
-import {Props} from '../../core/types';
-import {compileTemplateToElement} from '../../core/utils';
+import {Events, Props} from '../../core/types';
+import {compileTemplateToElement} from '../../core/utils/compile-template';
 import templatePug from './text-input.pug';
 import './text-input.scss';
 import {toKebab} from "../../utils";
+import {mapStateToPropsCallBack} from "../../store/utils";
 
 interface TextInputProps extends Props {
   id: string;
@@ -14,8 +15,9 @@ interface TextInputProps extends Props {
 }
 
 export class TextInput extends Block<TextInputProps> {
-  constructor(props: TextInputProps) {
-    super('div', 'TextInput', props);
+  constructor(props: TextInputProps, eventName: string, events?: Events) {
+    super('div', 'TextInput', props, events);
+    this.subscribeToStoreEvent(eventName, mapStateToPropsCallBack);
   }
 
   _addComponentNameClass() {
@@ -23,6 +25,6 @@ export class TextInput extends Block<TextInputProps> {
   }
 
   render() {
-    return compileTemplateToElement(templatePug, this.props);
+    return compileTemplateToElement(templatePug, this.props, '', this._meta.events);
   }
 }

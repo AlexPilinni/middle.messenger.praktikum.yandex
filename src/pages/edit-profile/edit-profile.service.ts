@@ -1,84 +1,18 @@
-import {Children, Props} from '../../core/types';
-import {TextInput} from "../../components/text-input/text-input";
 import {HandleFormService} from "../../services/handle-form-servise";
-import {Button} from "../../components/button/button";
 import {router} from "../../index";
-
-export interface EditProfilePageProps extends Props {
-  user: {
-    email: string;
-    login: string;
-    first_name: string;
-    second_name: string;
-    display_name: string;
-    phone: string;
-  };
-  children?: Children;
-}
+import {Events} from "../../core/types";
 
 class EditProfileService {
   protected handleFormService: HandleFormService
-  public props: EditProfilePageProps
+  public editProfileEvents: Events
   constructor() {
     this.handleFormService = new HandleFormService()
-    this.props = getProps(this.handleFormService)
+    this.editProfileEvents = getProps(this.handleFormService)
   }
 }
 
-function getProps(handleFormService: HandleFormService): EditProfilePageProps {
+function getProps(handleFormService: HandleFormService): Events {
   return {
-    user: {
-      email: 'pochta@yandex.ru',
-      login: 'ivanivanov',
-      first_name: 'Иван',
-      second_name: 'Иванов',
-      display_name: 'Иван',
-      phone: '+7 (909) 967 30 30'
-    },
-    children: {
-      emailInputComponent: new TextInput({
-        className: 'edit-profile',
-        id: 'email',
-        type: 'text',
-        initialValue: 'pochta@yandex.ru'
-      }),
-      loginInputComponent: new TextInput({
-        className: 'edit-profile',
-        id: 'login',
-        type: 'text',
-        initialValue: 'ivanivanov'
-      }),
-      firstnameInputComponent: new TextInput({
-        className: 'edit-profile',
-        id: 'firstname',
-        type: 'text',
-        initialValue: 'Иван'
-      }),
-      secondnameInputComponent: new TextInput({
-        className: 'edit-profile',
-        id: 'secondname',
-        type: 'text',
-        initialValue: 'Иванов'
-      }),
-      nicknameInputComponent: new TextInput({
-        className: 'edit-profile',
-        id: 'displayname',
-        type: 'text',
-        initialValue: 'Иван'
-      }),
-      phoneInputComponent: new TextInput({
-        className: 'edit-profile',
-        id: 'phone',
-        type: 'text',
-        initialValue: '+7 (909) 967 30 30'
-      }),
-      buttonComponent: new Button({
-        className: 'edit-profile',
-        type: 'submit',
-        text: 'Сохранить',
-      })
-    },
-    events: {
       click: [
         {
           id: 'goToChat',
@@ -147,9 +81,8 @@ function getProps(handleFormService: HandleFormService): EditProfilePageProps {
         }
       ],
     }
-  }
 }
 
 const editProfileService = new EditProfileService();
 
-export const {props} = editProfileService;
+export const {editProfileEvents} = editProfileService;

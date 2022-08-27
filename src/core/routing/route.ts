@@ -33,6 +33,6 @@ export class Route {
   }
 
   render() {
-    this._block = new this._blockClass(undefined, this._props.rootQuery);
+    this._block = new this._blockClass(undefined, undefined, this._props.rootQuery);
   }
 }

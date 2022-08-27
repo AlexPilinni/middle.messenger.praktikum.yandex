@@ -1,6 +1,6 @@
 import {Block} from '../../core/block';
 import {Props} from '../../core/types';
-import {compileTemplateToElement} from '../../core/utils';
+import {compileTemplateToElement} from '../../core/utils/compile-template';
 import templatePug from './chat.pug';
 import './chat.scss';
 import {toKebab} from "../../utils";

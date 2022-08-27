@@ -1,100 +1,66 @@
-import {Children, Props} from '../../core/types';
-import {TextInput} from "../../components/text-input/text-input";
 import {HandleFormService} from "../../services/handle-form-servise";
-import {Button} from "../../components/button/button";
 import {router} from "../../index";
+import {Events} from "../../core/types";
 
-export interface EditPasswordPageProps extends Props {
-  user: {
-    display_name: string;
-  };
-  children?: Children;
-}
 
 class EditPasswordService {
   protected handleFormService: HandleFormService
-  public props: EditPasswordPageProps
+  public editPasswordEvents: Events
+
   constructor() {
     this.handleFormService = new HandleFormService()
-    this.props = getProps(this.handleFormService)
+    this.editPasswordEvents = getProps(this.handleFormService)
   }
 }
 
-function getProps(handleFormService: HandleFormService): EditPasswordPageProps {
+function getProps(handleFormService: HandleFormService): Events {
   return {
-    user: {
-      display_name: 'Иван',
-    },
-    children: {
-      passwordInputComponent: new TextInput({
-        className: 'edit-password',
+    click: [
+      {
+        id: 'goToChat',
+        fn: event => {
+          event.preventDefault();
+          router.go('/messenger');
+        },
+      },
+    ],
+    focus: [
+      {
         id: 'password',
-        type: 'password'
-      }),
-      repeatPasswordInputComponent: new TextInput({
-        className: 'edit-password',
+        fn: handleFormService.handleFieldFocus
+      },
+      {
         id: 'repeat-password',
-        type: 'password',
-      }),
-      newPasswordInputComponent: new TextInput({
-        className: 'edit-password',
+        fn: handleFormService.handleFieldFocus
+      },
+      {
         id: 'new-password',
-        type: 'password',
-      }),
-      buttonComponent: new Button({
-        className: 'edit-password',
-        type: 'submit',
-        text: 'Сохранить',
-      })
-    },
-    events: {
-      click: [
-        {
-          id: 'goToChat',
-          fn: event => {
-            event.preventDefault();
-            router.go('/messenger');
-          },
-        },
-      ],
-      focus: [
-        {
-          id: 'password',
-          fn: handleFormService.handleFieldFocus
-        },
-        {
-          id: 'repeat-password',
-          fn: handleFormService.handleFieldFocus
-        },
-        {
-          id: 'new-password',
-          fn: handleFormService.handleFieldFocus
-        },
-      ],
-      blur: [
-        {
-          id: 'password',
-          fn: handleFormService.handleFieldBlur
-        },
-        {
-          id: 'repeat-password',
-          fn: handleFormService.handleFieldBlur
-        },
-        {
-          id: 'new-password',
-          fn: handleFormService.handleFieldBlur
-        },
-      ],
-      submit: [
-        {
-          id: 'edit-password-form',
-          fn: handleFormService.handleFormSubmit
-        }
-      ],
-    }
+        fn: handleFormService.handleFieldFocus
+      },
+    ],
+    blur: [
+      {
+        id: 'password',
+        fn: handleFormService.handleFieldBlur
+      },
+      {
+        id: 'repeat-password',
+        fn: handleFormService.handleFieldBlur
+      },
+      {
+        id: 'new-password',
+        fn: handleFormService.handleFieldBlur
+      },
+    ],
+    submit: [
+      {
+        id: 'edit-password-form',
+        fn: handleFormService.handleFormSubmit
+      }
+    ],
   }
 }
 
 const editPasswordService = new EditPasswordService();
 
-export const {props} = editPasswordService;
+export const {editPasswordEvents} = editPasswordService;
