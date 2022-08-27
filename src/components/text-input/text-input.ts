@@ -6,7 +6,7 @@ import './text-input.scss';
 import {toKebab} from "../../utils";
 import {mapStateToPropsCallBack} from "../../store/utils";
 
-interface TextInputProps extends Props {
+export interface TextInputProps extends Props {
   id: string;
   label?: string;
   type: string;

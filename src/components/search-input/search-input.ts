@@ -6,7 +6,7 @@ import './search-input.scss';
 import {toKebab} from "../../utils";
 import {mapStateToPropsCallBack} from "../../store/utils";
 
-interface SearchInputProps extends Props {
+export interface SearchInputProps extends Props {
   id: string;
   label?: string;
   type: string;

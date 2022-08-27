@@ -6,7 +6,7 @@ import './link.scss';
 import {toKebab} from "../../utils";
 import {mapStateToPropsCallBack} from "../../store/utils";
 
-interface LinkProps extends Props {
+export interface LinkProps extends Props {
   href: string;
   clasName?: string;
 }

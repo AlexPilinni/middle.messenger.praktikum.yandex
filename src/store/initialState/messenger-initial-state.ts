@@ -1,21 +1,17 @@
 import {MessengerPageProps} from "../../pages/messenger/types";
-import {SearchInput} from "../../components/search-input/search-input";
-import {Link} from "../../components/link/link";
-import {Card} from "../../components/card/card";
-import {Chat} from "../../components/chat/chat";
 
 export const MESSENGER_INITIAL_STATE: MessengerPageProps = {
-  searchInputComponent: new SearchInput({
+  searchInputComponent: {
     className: 'messenger',
     label: 'Поиск',
     id: 'search',
     type: 'text',
-  }),
-  linkComponent: new Link({
+  },
+  linkComponent: {
     className: 'messenger',
     href: '../profile/index.html'
-  }),
-  cardsComponent: new Card({
+  },
+  cardsComponent: {
     className: 'messenger',
     users: [
       {id: "1", name: 'Алексей', time: "10:20", message: "Го гулять", counter: "3"},
@@ -24,8 +20,8 @@ export const MESSENGER_INITIAL_STATE: MessengerPageProps = {
       {id: "4", name: 'Алексей', time: "10:20", message: "Го гулять", counter: "3"},
       {id: "5", name: 'Алексей', time: "10:20", message: "Го гулять", counter: "3"}
     ]
-  }),
-  chat: new Chat({
+  },
+  chatComponent: {
     className: 'messenger',
     user: {
       id: '999999',
@@ -42,5 +38,5 @@ export const MESSENGER_INITIAL_STATE: MessengerPageProps = {
         }
       ]
     }
-  })
+  }
 }

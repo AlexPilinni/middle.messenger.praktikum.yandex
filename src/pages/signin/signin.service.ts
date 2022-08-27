@@ -16,7 +16,7 @@ function getProps(handleFormService: HandleFormService): Events {
   return {
       click: [
         {
-          id: 'goToSignIn',
+          id: 'goToSignUp',
           fn: event => {
             event.preventDefault();
             router.go('/signup');
@@ -52,7 +52,6 @@ function getProps(handleFormService: HandleFormService): Events {
             if (!formData) {
               return;
             }
-            console.log(formData)
             UserSignInController.signIn(formData);
           }
         }

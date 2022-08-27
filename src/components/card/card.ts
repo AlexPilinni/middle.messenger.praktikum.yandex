@@ -6,7 +6,7 @@ import './card.scss';
 import {toKebab} from "../../utils";
 import {mapStateToPropsCallBack} from "../../store/utils";
 
-interface CardProps extends Props {
+export interface CardProps extends Props {
   users: Array<User>
 }
 

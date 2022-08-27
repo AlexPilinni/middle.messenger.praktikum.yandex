@@ -22,6 +22,21 @@ export type Props = Indexed;
 //   children?: Children;
 // };
 
+
+export type Meta = {
+  tagName: string;
+  props: Props;
+  rootId?: string;
+  events: Events;
+};
+
+export enum EventsEnum {
+  INIT = 'init',
+  FLOW_CDM = 'flow:component-did-mount',
+  FLOW_CDU = 'flow:component-did-update',
+  FLOW_RENDER = 'flow:render',
+}
+
 export type User = {
   id: string,
   name: string,

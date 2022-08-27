@@ -1,54 +1,52 @@
-import {TextInput} from "../../components/text-input/text-input";
-import {Button} from "../../components/button/button";
 import {SignUpPageProps} from "../../pages/signup/types";
 
 export const SIGNUP_INITIAL_STATE: SignUpPageProps = {
   title: 'Вход',
-  emailInputComponent: new TextInput({
+  emailInputComponent: {
     className: 'signup-form',
     label: 'Почта',
     id: 'email',
     type: 'text',
-  }),
-  loginInputComponent: new TextInput({
+  },
+  loginInputComponent: {
     className: 'signup-form',
     label: 'Логин',
     id: 'login',
     type: 'text',
-  }),
-  firstnameInputComponent: new TextInput({
+  },
+  firstnameInputComponent: {
     className: 'signup-form',
     label: 'Имя',
     id: 'first_name',
     type: 'text',
-  }),
-  secondnameInputComponent: new TextInput({
+  },
+  secondnameInputComponent: {
     className: 'signup-form',
     label: 'Фамилия',
     id: 'second_name',
     type: 'text',
-  }),
-  phoneInputComponent: new TextInput({
+  },
+  phoneInputComponent: {
     className: 'signup-form',
     label: 'Телефон',
     id: 'phone',
     type: 'text',
-  }),
-  passwordInputComponent: new TextInput({
+  },
+  passwordInputComponent: {
     className: 'signup-form',
     label: 'Пароль',
     id: 'password',
     type: 'password',
-  }),
-  repeatPasswordInputComponent: new TextInput({
+  },
+  repeatPasswordInputComponent: {
     className: 'signup-form',
     label: 'Пароль(еще раз)',
     id: 'repeat-password',
     type: 'password',
-  }),
-  buttonComponent: new Button({
+  },
+  buttonComponent: {
     className: 'signup-form',
     type: 'submit',
     text: 'Зарегистрироваться'
-  })
+  }
 }

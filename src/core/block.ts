@@ -1,34 +1,20 @@
 import { EventBus } from './event-bus';
-import {toKebab} from "../utils";
-import {Events, Props, StoreEvent} from './types';
 import {cloneDeep, isDeepEqual} from "../utils";
 import store from "../store/store";
+import {Events, EventsEnum, Meta, Props, StoreEvent} from './types';
+import {toKebab} from "../utils";
 
-type Meta = {
-  tagName: string;
-  props: Props;
-  rootId?: string;
-  events: Events;
-};
-
-export enum EventsEnum {
-	INIT = 'init',
-	FLOW_CDM = 'flow:component-did-mount',
-	FLOW_CDU = 'flow:component-did-update',
-	FLOW_RENDER = 'flow:render',
-}
 
 export class Block<T extends Props> {
 
-  protected eventBus: EventBus;
+   eventBus: EventBus;
+   readonly _meta: Meta;
+   _element: HTMLElement;
+   name: string;
+   tagName: string;
+   props: T;
 
-  protected readonly _meta: Meta;
-  protected _element: HTMLElement;
-  protected name: string;
-  protected tagName: string;
-  protected props: T;
-
-  private _storeEvents: StoreEvent[] = [];
+   _storeEvents: StoreEvent[] = [];
 
   constructor(tagName = 'div', name: string, props: T, events: Events = {}, rootId?: string) {
     this.eventBus = new EventBus();
@@ -46,22 +32,22 @@ export class Block<T extends Props> {
     this.eventBus.emit(EventsEnum.INIT);
   }
 
-  protected init() {
+   init() {
     this._createResources();
     this._addComponentNameAttribute();
     this._addComponentNameClass();
     this.eventBus.emit(EventsEnum.FLOW_CDM);
   }
 
-  protected componentDidMount(): void {
+   componentDidMount(): void {
     // Может переопределять пользователь, необязательно трогать
   }
 
-  protected componentDidUpdate(oldProps: Props, newProps: Props): boolean {
+   componentDidUpdate(oldProps: Props, newProps: Props): boolean {
     return isDeepEqual(oldProps, newProps);
   }
 
-  protected setProps<T>(nextProps: T): void {
+   setProps<T>(nextProps: T): void {
     if (!nextProps) {
       return;
     }
@@ -69,79 +55,71 @@ export class Block<T extends Props> {
     Object.assign(this.props, nextProps);
   }
 
-  protected render(): DocumentFragment {
+   render(): DocumentFragment {
     throw new Error('The render method must be implemented');
   }
 
-  protected subscribeToStoreEvent(eventName: string, callback: (path: string) => void): void {
+   subscribeToStoreEvent(eventName: string, callback: (path: string) => void): void {
     store.on(eventName, callback, this);
     this._storeEvents.push({eventName, callback});
   }
-  protected makePropsProxy(_: T): T | null {
+   makePropsProxy(_: T): T | null {
     return null;
   }
 
-  public getContent(): HTMLElement {
+   getContent(): HTMLElement {
     return this.element;
   }
 
-  public show(): void {
+   show(): void {
     this.getContent().classList.remove('hidden');
   }
 
-  public hide(): void {
+   hide(): void {
     this.getContent().classList.add('hidden');
   }
 
-  public destroy(): void {
+   destroy(): void {
     this._componentWillUnmount();
   }
 
-  protected get element(): HTMLElement {
+   get element(): HTMLElement {
     return this._element;
   }
 
-  protected _registerEventBusEvents(eventBus: EventBus) {
+   _registerEventBusEvents(eventBus: EventBus) {
     eventBus.on(EventsEnum.INIT, this.init.bind(this), this);
     eventBus.on(EventsEnum.FLOW_CDM, this._componentDidMount.bind(this), this);
     eventBus.on(EventsEnum.FLOW_CDU, this._componentDidUpdate.bind(this), this);
     eventBus.on(EventsEnum.FLOW_RENDER, this._render.bind(this), this);
   }
 
-  protected _removeEventBusEvents() {
+   _removeEventBusEvents() {
     this.eventBus.off(EventsEnum.INIT, this.init.bind(this), this);
     this.eventBus.off(EventsEnum.FLOW_CDM, this._componentDidMount.bind(this), this);
     this.eventBus.off(EventsEnum.FLOW_CDU, this._componentDidUpdate.bind(this), this);
     this.eventBus.off(EventsEnum.FLOW_RENDER, this._render.bind(this), this);
   }
 
-  protected _createResources() {
+   _createResources() {
     const {tagName} = this._meta;
     this._element = this._createDocumentElement(tagName);
   }
 
-  protected _addComponentNameAttribute() {
+   _addComponentNameAttribute() {
     this._element.setAttribute('data-component', this.name);
   }
 
-  protected _addComponentNameClass() {
+   _addComponentNameClass() {
     this._element.classList.add(toKebab(this.name));
   }
 
-  protected _componentDidMount() {
+   _componentDidMount() {
     this.componentDidMount();
     this.eventBus.emit(EventsEnum.FLOW_RENDER);
   }
 
-  protected _componentDidUpdate(oldProps: Props, newProps: Props): void {
-    const isEqual = this.componentDidUpdate(oldProps, newProps);
-
-    if (!isEqual) {
-      this.eventBus.emit(EventsEnum.FLOW_RENDER);
-    }
-  }
-
-  protected _componentWillUnmount() {
+   _componentWillUnmount() {
     this._removeAllEvents();
     const root = document.getElementById(this._meta.rootId || '');
 
@@ -149,6 +127,16 @@ export class Block<T extends Props> {
       root.innerHTML = '';
     }
   }
+
+   _componentDidUpdate(oldProps: Props, newProps: Props): void {
+    const isEqual = this.componentDidUpdate(oldProps, newProps);
+
+    if (!isEqual) {
+      this.eventBus.emit(EventsEnum.FLOW_RENDER);
+    }
+  }
+
+
 
   protected _render(): void {
     this._removeEvents();
@@ -197,13 +185,11 @@ export class Block<T extends Props> {
 
   protected _addEvents() {
     const {events = {}} = this._meta;
-
     Object.entries(events).forEach(([eventName, eventArray = []]) => {
       eventArray.forEach(({id, fn}) => {
         const nodeElement = this.element.querySelector(`#${id}`);
 
         if (!nodeElement) {
-          console.error(`AddEvents function has not been able to find an element with id ${id}`);
           return;
         }
 

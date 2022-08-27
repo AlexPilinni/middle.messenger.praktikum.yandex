@@ -5,6 +5,7 @@ import {SearchInput} from "../components/search-input/search-input";
 import {Card} from "../components/card/card";
 import {Errors} from "../components/errors/errors";
 import {MessagesList} from "../components/messages/messages";
+import {Chat} from "../components/chat/chat";
 
 export const REGISTERED_COMPONENTS = {
   emailInputComponent: TextInput,
@@ -20,6 +21,7 @@ export const REGISTERED_COMPONENTS = {
   linkComponent: Link,
   searchInputComponent: SearchInput,
   cardsComponent: Card,
+  chatComponent: Chat,
   messagesList: MessagesList,
   errorsComponent: Errors
 }

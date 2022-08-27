@@ -6,7 +6,7 @@ import './button.scss';
 import {toKebab} from "../../utils";
 import {mapStateToPropsCallBack} from "../../store/utils";
 
-interface ButtonProps extends Props {
+export interface ButtonProps extends Props {
   type?: string;
   className?: string;
   text: string;

@@ -34,7 +34,6 @@ export function compileTemplateToElement(
           console.error(`Attribute data was not specified in the markup for the ${element}`);
           return;
         }
-
         const data = props[dataName] as Props;
 
         if (data === undefined) {

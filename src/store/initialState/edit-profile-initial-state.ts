@@ -1,5 +1,3 @@
-import {TextInput} from "../../components/text-input/text-input";
-import {Button} from "../../components/button/button";
 import {EditProfilePageProps} from "../../pages/edit-profile/types";
 
 export const EDIT_PROFILE_INITIAL_STATE: EditProfilePageProps = {
@@ -11,45 +9,45 @@ export const EDIT_PROFILE_INITIAL_STATE: EditProfilePageProps = {
     display_name: 'Иван',
     phone: '+7 (909) 967 30 30'
   },
-  emailInputComponent: new TextInput({
+  emailInputComponent: {
     className: 'edit-profile',
     id: 'email',
     type: 'text',
     initialValue: 'pochta@yandex.ru'
-  }),
-  loginInputComponent: new TextInput({
+  },
+  loginInputComponent: {
     className: 'edit-profile',
     id: 'login',
     type: 'text',
     initialValue: 'ivanivanov'
-  }),
-  firstnameInputComponent: new TextInput({
+  },
+  firstnameInputComponent: {
     className: 'edit-profile',
     id: 'firstname',
     type: 'text',
     initialValue: 'Иван'
-  }),
-  secondnameInputComponent: new TextInput({
+  },
+  secondnameInputComponent: {
     className: 'edit-profile',
     id: 'secondname',
     type: 'text',
     initialValue: 'Иванов'
-  }),
-  nicknameInputComponent: new TextInput({
+  },
+  nicknameInputComponent: {
     className: 'edit-profile',
     id: 'displayname',
     type: 'text',
     initialValue: 'Иван'
-  }),
-  phoneInputComponent: new TextInput({
+  },
+  phoneInputComponent: {
     className: 'edit-profile',
     id: 'phone',
     type: 'text',
     initialValue: '+7 (909) 967 30 30'
-  }),
-  buttonComponent: new Button({
+  },
+  buttonComponent:{
     className: 'edit-profile',
     type: 'submit',
     text: 'Сохранить',
-  })
+  }
 }

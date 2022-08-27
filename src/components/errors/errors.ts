@@ -6,7 +6,7 @@ import './errors.scss';
 import {toKebab} from "../../utils";
 import {mapStateToPropsCallBack} from "../../store/utils";
 
-interface ErrorsProps extends Props {
+export interface ErrorsProps extends Props {
   clasName?: string;
   title: string;
   message: string;

@@ -1,6 +1,6 @@
 import {Props} from "../../core/types";
-import {TextInput} from "../../components/text-input/text-input";
-import {Button} from "../../components/button/button";
+import {TextInputProps} from "../../components/text-input/text-input";
+import {ButtonProps} from "../../components/button/button";
 
 export interface EditProfilePageProps extends Props {
   user: {
@@ -11,11 +11,11 @@ export interface EditProfilePageProps extends Props {
     display_name: 'Иван',
     phone: '+7 (909) 967 30 30'
   },
-  emailInputComponent?: TextInput;
-  loginInputComponent?: TextInput;
-  firstnameInputComponent?: TextInput;
-  secondnameInputComponent?: TextInput;
-  nicknameInputComponent?: TextInput;
-  phoneInputComponent?: TextInput;
-  buttonComponent?: Button;
+  emailInputComponent?: TextInputProps;
+  loginInputComponent?: TextInputProps;
+  firstnameInputComponent?: TextInputProps;
+  secondnameInputComponent?: TextInputProps;
+  nicknameInputComponent?: TextInputProps;
+  phoneInputComponent?: TextInputProps;
+  buttonComponent?: ButtonProps;
 }

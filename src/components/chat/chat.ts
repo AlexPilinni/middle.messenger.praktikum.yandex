@@ -1,11 +1,12 @@
 import {Block} from '../../core/block';
-import {Props} from '../../core/types';
+import {Events, Props} from '../../core/types';
 import {compileTemplateToElement} from '../../core/utils/compile-template';
 import templatePug from './chat.pug';
 import './chat.scss';
 import {toKebab} from "../../utils";
+import {mapStateToPropsCallBack} from "../../store/utils";
 
-interface ChatProps extends Props {
+export interface ChatProps extends Props {
   className: string,
   user: undefined | {
     id: string;
@@ -20,8 +21,10 @@ interface ChatProps extends Props {
 }
 
 export class Chat extends Block<ChatProps> {
-  constructor(props: ChatProps) {
-    super('div', 'Chat', props);
+  constructor(props: ChatProps, eventName: string, events?: Events) {
+    super('div', 'Chat', props, events);
+
+    this.subscribeToStoreEvent(eventName, mapStateToPropsCallBack);
   }
 
   _addComponentNameClass() {
@@ -29,6 +32,6 @@ export class Chat extends Block<ChatProps> {
   }
 
   render() {
-    return compileTemplateToElement(templatePug, this.props);
+    return compileTemplateToElement(templatePug, this.props, '', this._meta.events);
   }
 }
