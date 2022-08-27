@@ -1,37 +1,33 @@
-import {SignUpAPI, SignUpResponse} from "../../api/auth/signup-api";
 import {Options, ResponseType} from "../../services/http-service";
 import {router} from "../../index";
+import {SignInAPI} from "../../api/auth/signin-api";
 import {Indexed} from "../../core/types";
 import {ErrorResponse} from "../../api/types";
 
-const validationKeys = ['first_name', 'second_name', 'login', 'email', 'phone', 'password'];
+const validationKeys = ['login', 'password'];
 
-type SignUpFormModel = {
-  first_name: string;
-  second_name: string;
+type SignInFormModel = {
   login: string;
-  email: string;
-  phone: string;
   password: string;
 }
 
-const signUpAPI = new SignUpAPI();
+const signInAPI = new SignInAPI();
 
-export class UserSignUpController {
-  static async signUp(data: Indexed): Promise<void> {
+export class UserSignInController {
+  static async signIn(data: Indexed): Promise<void> {
     try {
-      const isValid = userLoginValidator(data);
+      const isValid = userSignInValidator(data);
 
       if (!isValid) {
         throw new Error('SignUp form data  does not correspond to Sign Up Form Model type');
       }
 
-      signUpAPI.create(prepareDataToRequest(data))
-        .then((response: SignUpResponse | ErrorResponse) => {
-          if (isErrorResponse(response)) {
+      signInAPI.create(prepareDataToRequest(data))
+        .then((response: ErrorResponse | null) => {
+          if (response) {
             throw new Error(response.reason);
           }
-          console.log('UserSignUpController: ', response);
+          console.log('UserSignInController: ', response);
           router.go('/messenger');
         })
         .catch((error) => {
@@ -43,17 +39,13 @@ export class UserSignUpController {
   }
 }
 
-function isErrorResponse(response: Indexed): response is ErrorResponse {
-  return !!response?.reason;
-}
-
-function userLoginValidator(data: Indexed): data is SignUpFormModel {
+function userSignInValidator(data: Record<string, unknown>): data is SignInFormModel {
   const keysArray = Object.keys(data);
 
   return validationKeys.every((key: string) => keysArray.includes(key));
 }
 
-function prepareDataToRequest(data: SignUpFormModel): Options {
+function prepareDataToRequest(data: SignInFormModel): Options {
   return {
     withCredentials: true,
     responseType: ResponseType.json,

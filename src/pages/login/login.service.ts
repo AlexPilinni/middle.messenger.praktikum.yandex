@@ -3,6 +3,7 @@ import {TextInput} from "../../components/text-input/text-input";
 import {HandleFormService} from "../../services/handle-form-servise";
 import {Button} from "../../components/button/button";
 import {router} from "../../index";
+import {UserSignInController} from "../../controllers/auth/signin-controller";
 
 export interface LoginPageProps extends Props {
   title: string;
@@ -73,7 +74,15 @@ function getProps(handleFormService: HandleFormService): LoginPageProps {
       submit: [
         {
           id: 'login-form',
-          fn: handleFormService.handleFormSubmit
+          fn: event => {
+            const formData = handleFormService.handleFormSubmit(event);
+
+            if (!formData) {
+              return;
+            }
+            console.log(formData)
+            UserSignInController.signIn(formData);
+          }
         }
       ],
     }

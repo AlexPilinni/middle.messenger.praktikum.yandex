@@ -8,7 +8,7 @@ export type SignUpResponse = {
 }
 
 const signUpAPIInstance = new Http(`${host}/api/v2/auth/signup`);
-//
+
 export class SignUpAPI extends BaseAPI {
   public create(options: Options): Promise<SignUpResponse | ErrorResponse> {
     return signUpAPIInstance.post<SignUpResponse | ErrorResponse>('', options)

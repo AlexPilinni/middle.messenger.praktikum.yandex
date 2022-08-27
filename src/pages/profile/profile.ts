@@ -4,6 +4,7 @@ import {compileTemplateToElement} from '../../core/utils';
 import templatePug from './profile.pug';
 import './profile.scss'
 import {router} from "../../index";
+import {UserLogOutController} from "../../controllers/auth/logout-controller";
 
 interface ProfilePageProps extends Props {
   user: {
@@ -39,7 +40,7 @@ const props: ProfilePageProps = {
         id: 'goToLogin',
         fn: event => {
           event.preventDefault();
-          router.go('/');
+          UserLogOutController.logOut();
         },
       },
       {
