@@ -4,9 +4,9 @@ import templatePug from './edit-password.pug';
 import './edit-password.scss'
 import {EditPasswordPageProps, props} from './edit-password.service';
 
-class EditPasswordPage extends Block<EditPasswordPageProps> {
-  constructor(props: EditPasswordPageProps) {
-    super('main', 'EditPassword', props);
+export class EditPasswordPage extends Block<EditPasswordPageProps> {
+  constructor(propsObj: EditPasswordPageProps=props, rootId?: string) {
+    super('main', 'EditPassword', propsObj,rootId);
   }
 
   render() {
@@ -14,10 +14,9 @@ class EditPasswordPage extends Block<EditPasswordPageProps> {
   }
 
   componentDidMount() {
-    const root = document.getElementById('app');
+    const root = document.getElementById(this._meta.rootId);
 
     root?.appendChild(this.getContent());
   }
 }
 
-new EditPasswordPage(props);

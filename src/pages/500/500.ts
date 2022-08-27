@@ -15,9 +15,9 @@ const props: Props = {
   },
 };
 
-class ServerErrorPage extends Block<Props> {
-  constructor(props: Props) {
-    super('main', 'ServerErrorPage', props);
+export  class ServerErrorPage extends Block<Props> {
+  constructor(propsObj: Props=props, rootId?: string) {
+    super('main', 'ServerErrorPage', propsObj, rootId);
   }
 
   render() {
@@ -25,10 +25,9 @@ class ServerErrorPage extends Block<Props> {
   }
 
   componentDidMount() {
-    const root = document.getElementById('app');
+    const root = document.getElementById(this._meta.rootId);
 
     root?.appendChild(this.getContent());
   }
 }
 
-new ServerErrorPage(props);

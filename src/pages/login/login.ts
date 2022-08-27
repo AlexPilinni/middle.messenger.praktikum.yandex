@@ -20,5 +20,4 @@ export class LoginPage extends Block<LoginPageProps> {
   }
 }
 
-// new LoginPage(props);
 

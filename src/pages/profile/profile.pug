@@ -1,6 +1,6 @@
 h1.profile__title
 aside.profile__panel
-    a(href="../messenger/index.html" class="profile__link")
+    a(href="#" id="goToChat" class="profile__link")
 main.profile__main
     section.profile__section
         .profile__avatar
@@ -26,8 +26,8 @@ main.profile__main
                 .profile__value= user.phone
         ul.controls
             li.controls__item
-                a(href="../edit-profile/index.html" class="controls__link") Изменить данные
+                a(href="#" id="goToEditProfile" class="controls__link") Изменить данные
             li.controls__item
-                a(href="../edit-password/index.html" class="controls__link") Изменить пароль
+                a(href="#" id="goToEditPassword" class="controls__link") Изменить пароль
             li.controls__item
-                a(href="../login/index.html" class="controls__link") Выйти
+                a(href="#" id="goToLogin" class="controls__link") Выйти

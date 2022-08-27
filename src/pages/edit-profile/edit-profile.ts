@@ -4,9 +4,9 @@ import templatePug from './edit-profile.pug';
 import './edit-profile.scss'
 import {EditProfilePageProps, props} from './edit-profile.service';
 
-class EditProfilePage extends Block<EditProfilePageProps> {
-  constructor(props: EditProfilePageProps) {
-    super('main', 'EditProfile', props);
+export class EditProfilePage extends Block<EditProfilePageProps> {
+  constructor(propsObj: EditProfilePageProps=props, rootId?: string) {
+    super('main', 'EditProfile', propsObj, rootId);
   }
 
   render() {
@@ -14,10 +14,9 @@ class EditProfilePage extends Block<EditProfilePageProps> {
   }
 
   componentDidMount() {
-    const root = document.getElementById('app');
+    const root = document.getElementById(this._meta.rootId);
 
     root?.appendChild(this.getContent());
   }
 }
 
-new EditProfilePage(props);

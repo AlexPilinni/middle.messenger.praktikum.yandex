@@ -2,6 +2,7 @@ import {Children, Props} from '../../core/types';
 import {TextInput} from "../../components/text-input/text-input";
 import {HandleFormService} from "../../services/handle-form-servise";
 import {Button} from "../../components/button/button";
+import {router} from "../../index";
 
 export interface EditPasswordPageProps extends Props {
   user: {
@@ -47,6 +48,15 @@ function getProps(handleFormService: HandleFormService): EditPasswordPageProps {
       })
     },
     events: {
+      click: [
+        {
+          id: 'goToChat',
+          fn: event => {
+            event.preventDefault();
+            router.go('/messenger');
+          },
+        },
+      ],
       focus: [
         {
           id: 'password',

@@ -5,9 +5,9 @@ import './messenger.scss';
 import {MessengerPageProps, props} from './messenger.service';
 
 
-class MessengerPage extends Block<MessengerPageProps> {
-  constructor(props: MessengerPageProps) {
-    super('main', 'Messenger', props);
+export class MessengerPage extends Block<MessengerPageProps> {
+  constructor(propsObj: MessengerPageProps=props, rootId?: string) {
+    super('main', 'Messenger', propsObj, rootId);
   }
 
   render() {
@@ -15,10 +15,10 @@ class MessengerPage extends Block<MessengerPageProps> {
   }
 
   componentDidMount() {
-    const root = document.getElementById('app');
+    const root = document.getElementById(this._meta.rootId);
 
     root?.appendChild(this.getContent());
   }
 }
 
-new MessengerPage(props);
+// new MessengerPage(props);

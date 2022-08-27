@@ -3,6 +3,7 @@ import {Props} from '../../core/types';
 import {compileTemplateToElement} from '../../core/utils';
 import templatePug from './profile.pug';
 import './profile.scss'
+import {router} from "../../index";
 
 interface ProfilePageProps extends Props {
   user: {
@@ -25,11 +26,43 @@ const props: ProfilePageProps = {
     phone: '+7 (909) 967 30 30'
   },
   children: {},
+  events: {
+    click: [
+      {
+        id: 'goToChat',
+        fn: event => {
+          event.preventDefault();
+          router.go('/messenger');
+        },
+      },
+      {
+        id: 'goToLogin',
+        fn: event => {
+          event.preventDefault();
+          router.go('/');
+        },
+      },
+      {
+        id: 'goToEditProfile',
+        fn: event => {
+          event.preventDefault();
+          router.go('/edit-profile');
+        },
+      },
+      {
+        id: 'goToEditPassword',
+        fn: event => {
+          event.preventDefault();
+          router.go('/edit-password');
+        },
+      },
+    ],
+  }
 };
 
-class ProfilePage extends Block<ProfilePageProps> {
-  constructor(props: ProfilePageProps) {
-    super('main', 'Profile', props);
+export class ProfilePage extends Block<ProfilePageProps> {
+  constructor(propsObj: ProfilePageProps=props, rootId?: string) {
+    super('main', 'Profile', propsObj, rootId);
   }
 
   render() {
@@ -37,10 +70,9 @@ class ProfilePage extends Block<ProfilePageProps> {
   }
 
   componentDidMount() {
-    const root = document.getElementById('app');
+    const root = document.getElementById(this._meta.rootId);
 
     root?.appendChild(this.getContent());
   }
 }
 
-new ProfilePage(props);
