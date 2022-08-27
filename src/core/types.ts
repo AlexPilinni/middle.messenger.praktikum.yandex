@@ -29,3 +29,7 @@ export type User = {
   message: string,
   counter: string
 }
+
+export type Indexed<T = unknown> = {
+  [key in string]: T;
+};

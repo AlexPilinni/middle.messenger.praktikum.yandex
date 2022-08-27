@@ -24,15 +24,11 @@ export class HandleFormService {
     (mainBlock as HTMLInputElement).classList.remove('invalid');
   }
 
-  handleSubmit(event: Event): void {
+  handleSubmit(event: Event): Record<string, string> | null {
     event.preventDefault();
     const form = event.target as HTMLFormElement;
 
-    const formData = this.serializeForm(form);
-
-    if (formData) {
-      console.log('formValue', formData);
-    }
+    return this.serializeForm(form);
   }
 
   private serializeForm(formNode: HTMLFormElement): Record<string, string> | null {

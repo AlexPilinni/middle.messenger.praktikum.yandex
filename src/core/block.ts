@@ -72,7 +72,7 @@ export class Block<T extends Props> {
     return null;
   }
 
-  protected getContent(): HTMLElement {
+  public getContent(): HTMLElement {
     return this.element;
   }
 

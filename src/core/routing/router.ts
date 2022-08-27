@@ -5,9 +5,11 @@ export class Router {
   private static __instance: Router;
   private _currentRoute: Route | null;
   private readonly _rootQuery: string;
+  private _fallBackPathName: string;
 
   private _routes: Route[];
   private _history: History;
+
 
   constructor(rootQuery: string) {
     if (Router.__instance) {
@@ -28,6 +30,12 @@ export class Router {
     return this;
   }
 
+  setFallBack(pathname:string, block: BlockInheritor) {
+    this.use(pathname, block);
+    this._fallBackPathName = pathname;
+    return this;
+  }
+
   start() {
     window.onpopstate = (event) => {
       this._onRoute((event.currentTarget as HTMLFormElement).location.pathname);
@@ -37,7 +45,7 @@ export class Router {
   }
 
   _onRoute(pathname: string) {
-    const route = this.getRoute(pathname);
+    const route = this.getRoute(pathname) || this.getRoute(this._fallBackPathName);
 
     if (!route) {
       return;

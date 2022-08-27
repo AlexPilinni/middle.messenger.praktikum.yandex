@@ -4,6 +4,8 @@ import {HandleFormService} from "../../services/handle-form-servise";
 import {Button} from "../../components/button/button";
 import {router} from "../../index";
 
+import {UserSignUpController} from "../../controllers/auth/signup-controller";
+
 export interface SigninPageProps extends Props {
   title: string;
   children?: Children;
@@ -37,13 +39,13 @@ function getProps(handleFormService: HandleFormService): SigninPageProps {
       firstnameInputComponent: new TextInput({
         className: 'signin-form',
         label: 'Имя',
-        id: 'firstname',
+        id: 'first_name',
         type: 'text',
       }),
       secondnameInputComponent: new TextInput({
         className: 'signin-form',
         label: 'Фамилия',
-        id: 'secondname',
+        id: 'second_name',
         type: 'text',
       }),
       phoneInputComponent: new TextInput({
@@ -90,11 +92,11 @@ function getProps(handleFormService: HandleFormService): SigninPageProps {
           fn: handleFormService.handleFieldFocus
         },
         {
-          id: 'firstname',
+          id: 'first_name',
           fn: handleFormService.handleFieldFocus
         },
         {
-          id: 'secondname',
+          id: 'second_name',
           fn: handleFormService.handleFieldFocus
         },
         {
@@ -120,11 +122,11 @@ function getProps(handleFormService: HandleFormService): SigninPageProps {
           fn: handleFormService.handleFieldBlur
         },
         {
-          id: 'firstname',
+          id: 'first_name',
           fn: handleFormService.handleFieldBlur
         },
         {
-          id: 'secondname',
+          id: 'second_name',
           fn: handleFormService.handleFieldBlur
         },
         {
@@ -143,7 +145,16 @@ function getProps(handleFormService: HandleFormService): SigninPageProps {
       submit: [
         {
           id: 'signin-form',
-          fn: handleFormService.handleFormSubmit
+          fn: event => {
+            const formData = handleFormService.handleFormSubmit(event);
+            console.log('formData', formData)
+            if (!formData) {
+              console.log('не зашло')
+              return;
+            }
+
+            UserSignUpController.signUp(formData);
+          },
         }
       ],
     }
