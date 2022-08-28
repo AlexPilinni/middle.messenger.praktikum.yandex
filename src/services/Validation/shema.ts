@@ -23,7 +23,7 @@ export const SCHEMA_VALIDATION:SchemaValidation = {
   'email': [isRequired, minLength(3), maxLength(20), isEmailApprove],
   'first_name': [isRequired, minLength(2), maxLength(10), isRecommendedCharacters],
   'second_name': [isRequired, minLength(2), maxLength(10), isRecommendedCharacters],
-  'displayname': [isRequired, minLength(2), maxLength(10), isRecommendedCharacters],
+  'display_name': [isRequired, minLength(2), maxLength(10), isRecommendedCharacters],
   'phone': [isRequired, isPhoneApprove],
   'message': [hasLength]
 }

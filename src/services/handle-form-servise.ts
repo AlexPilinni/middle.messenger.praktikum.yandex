@@ -27,7 +27,6 @@ export class HandleFormService {
   handleSubmit(event: Event): Record<string, string> | null {
     event.preventDefault();
     const form = event.target as HTMLFormElement;
-
     return this.serializeForm(form);
   }
 
@@ -55,7 +54,7 @@ export class HandleFormService {
         const {name, value} = element;
 
         obj[name] = value;
-        element.value = ''
+        // element.value = ''
         return obj;
       }, {});
   }

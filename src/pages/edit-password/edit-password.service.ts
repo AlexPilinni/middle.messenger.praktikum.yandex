@@ -1,6 +1,9 @@
 import {HandleFormService} from "../../services/handle-form-servise";
 import {router} from "../../index";
 import {Events} from "../../core/types";
+import {
+  ChangeUserPasswordController
+} from "../../controllers/profile/change-user-password-controller";
 
 
 class EditPasswordService {
@@ -55,7 +58,14 @@ function getProps(handleFormService: HandleFormService): Events {
     submit: [
       {
         id: 'edit-password-form',
-        fn: handleFormService.handleFormSubmit
+        fn: (event) => {
+          event.preventDefault();
+
+          const formData = handleFormService.handleFormSubmit(event)
+          ChangeUserPasswordController.change(formData)
+
+          setTimeout(()=> router.go('/profile'),1000)
+        }
       }
     ],
   }

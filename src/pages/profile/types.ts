@@ -1,7 +1,7 @@
 import {Props} from "../../core/types";
 
 export interface ProfilePageProps extends Props {
-  user?: {
+  user: {
     email: string;
     login: string;
     first_name: string;

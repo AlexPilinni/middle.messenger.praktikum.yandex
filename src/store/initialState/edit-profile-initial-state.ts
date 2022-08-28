@@ -13,7 +13,7 @@ export const EDIT_PROFILE_INITIAL_STATE: EditProfilePageProps = {
     className: 'edit-profile',
     id: 'email',
     type: 'text',
-    initialValue: 'pochta@yandex.ru'
+    initialValue: 'pochta@yandex2.ru'
   },
   loginInputComponent: {
     className: 'edit-profile',
@@ -23,19 +23,19 @@ export const EDIT_PROFILE_INITIAL_STATE: EditProfilePageProps = {
   },
   firstnameInputComponent: {
     className: 'edit-profile',
-    id: 'firstname',
+    id: 'first_name',
     type: 'text',
     initialValue: 'Иван'
   },
   secondnameInputComponent: {
     className: 'edit-profile',
-    id: 'secondname',
+    id: 'second_name',
     type: 'text',
     initialValue: 'Иванов'
   },
   nicknameInputComponent: {
     className: 'edit-profile',
-    id: 'displayname',
+    id: 'display_name',
     type: 'text',
     initialValue: 'Иван'
   },

@@ -6,10 +6,16 @@ import {editProfileEvents} from './edit-profile.service';
 import {EditProfilePageProps} from "./types";
 import {Events} from "../../core/types";
 import {EDIT_PROFILE_INITIAL_STATE} from "../../store/initialState/edit-profile-initial-state";
+import {mapStateToPropsCallBack} from "../../store/utils";
+import {UserInfoForProfileController} from "../../controllers/profile/get-user-info-for-profile";
 
 export class EditProfilePage extends Block<EditProfilePageProps> {
   constructor(propsObj: EditProfilePageProps = EDIT_PROFILE_INITIAL_STATE, events: Events = editProfileEvents, rootId?: string) {
     super('main', 'EditProfile', propsObj, events, rootId);
+
+    this.subscribeToStoreEvent('EditProfilePage', mapStateToPropsCallBack);
+    this.subscribeToStoreEvent('EditProfilePageInfo', mapStateToPropsCallBack);
+    UserInfoForProfileController.getInfo()
   }
 
   render() {
