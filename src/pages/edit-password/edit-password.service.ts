@@ -62,7 +62,11 @@ function getProps(handleFormService: HandleFormService): Events {
           event.preventDefault();
 
           const formData = handleFormService.handleFormSubmit(event)
-          ChangeUserPasswordController.change(formData)
+          const newFormData = {
+            oldPassword: formData['password'],
+            newPassword: formData['new-password']
+          }
+          ChangeUserPasswordController.change(newFormData)
 
           setTimeout(()=> router.go('/profile'),1000)
         }
