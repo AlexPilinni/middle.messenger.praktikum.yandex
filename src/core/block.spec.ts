@@ -33,27 +33,28 @@ describe("Block", () => {
         test: 123
       }
 
-      const testBlock = new TestBlock(undefined, '', props);
+      const testBlock = new TestBlock('div', 'Section', props, {});
 
       expect(util.types.isProxy(testBlock.props)).to.be.true;
     })
 
     it("should create element with passed tag", () => {
-      const testBlock = new TestBlock('section', '', {test: 123});
+      const testBlock = new TestBlock('section', 'Section', {test: 123});
 
       expect(testBlock.getContent().tagName).to.eq('SECTION');
     })
 
     it("should add class with passed className", () => {
-      const expectedClassName = 'test-class';
+      const expectedClassName = 'testClass';
+      const resultClass = 'test-class'
 
-      const testBlock = new TestBlock(undefined, expectedClassName, {test: 123});
+      const testBlock = new TestBlock('div', expectedClassName, {test: 123});
 
-      expect(testBlock.getContent().className).to.eq(expectedClassName);
+      expect(testBlock.getContent().className).to.eq(resultClass);
     })
 
     it("should insert element received from function render", () => {
-      class TestBlock extends Block<{test: 123}> {
+      class TestBlock extends Block<{}> {
         render() {
           const fragment = document.createDocumentFragment();
           insertPElement(fragment);
@@ -64,13 +65,13 @@ describe("Block", () => {
       const expectedElement = document.createElement('div');
       insertPElement(expectedElement);
 
-      const testBlock = new TestBlock('div', '', {test: 123});
+      const testBlock = new TestBlock('div', 'Div', {});
 
       expect(testBlock.getContent().innerHTML).to.eq(expectedElement.innerHTML);
     })
 
     it("should set events to element", () => {
-      class TestBlock extends Block<{test: 123}> {
+      class TestBlock extends Block<{}> {
         render() {
           const fragment = document.createDocumentFragment();
           insertPElement(fragment, {name: 'id', value: 'test'});
@@ -85,7 +86,7 @@ describe("Block", () => {
         }]
       }
 
-      const testBlock = new TestBlock(undefined, '', {test: 123}, events);
+      const testBlock = new TestBlock('div', 'Div', {}, events);
       const pElement = testBlock.getContent().querySelector('#test') as HTMLElement;
       pElement?.click();
 
@@ -95,40 +96,21 @@ describe("Block", () => {
 
   describe('setProps', () => {
     it("should extend props object with passed object", () => {
-      const initialProps: {test: number} = { test: 1 };
-      const newProps = { test: 2 }
+      const initialProps = { test: 1 };
+      const newProps = { test2: 2 }
       const expectedProps = Object.assign(initialProps, newProps);
 
-      const testBlock = new TestBlock(undefined, '', initialProps);
+      const testBlock = new TestBlock('div', 'Div', initialProps);
       testBlock.setProps(newProps);
 
       expect(JSON.stringify(testBlock.props)).to.eq(JSON.stringify(expectedProps));
     })
   })
 
-  describe('hide', () => {
-    it("should add class hidden to the element", () => {
-      const testBlock = new TestBlock('div', '', {test: 123});
-      testBlock.hide();
-
-      expect(testBlock.getContent().className).to.eq('hidden');
-    })
-  })
-
-  describe('show', () => {
-    it("should remove class hidden from the element", () => {
-      const testBlock = new TestBlock('div', '', {test: 123});
-      testBlock.getContent().classList.add('hidden');
-
-      testBlock.show();
-
-      expect(testBlock.getContent().className).not.be.undefined;
-    })
-  })
 
   describe('destroy', () => {
     it("should clear root element", () => {
-      class TestBlock extends Block<{test: 123}> {
+      class TestBlock extends Block<{}> {
         render() {
           const fragment = document.createDocumentFragment();
           insertPElement(fragment);
@@ -140,7 +122,7 @@ describe("Block", () => {
         }
       }
 
-      const testBlock = new TestBlock('div', '', {test: 123}, {}, 'app');
+      const testBlock = new TestBlock('div', 'Div', {}, {}, 'app');
 
       testBlock.destroy();
 

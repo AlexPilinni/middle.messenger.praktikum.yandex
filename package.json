@@ -3,7 +3,6 @@
   "version": "1.0.0",
   "description": "messenger",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "start": "parcel --open --port=3000 --target=frontend",
     "start:dev": "parcel --open",
     "serve": "parcel build --target=frontend && node ./server/app.js",
@@ -12,7 +11,8 @@
     "lint": "eslint src/",
     "lint fix": "eslint src/ --fix",
     "stylelint": "stylelint \"src//*.scss\"",
-    "stylelintFixed": "stylelint \"src//*.scss\" --fix"
+    "stylelintFixed": "stylelint \"src//*.scss\" --fix",
+    "test": "mocha"
   },
   "targets": {
     "frontend": {
