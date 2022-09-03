@@ -9,7 +9,7 @@ import {mapStateToPropsCallBack} from "../../store/utils";
 export interface TextInputProps extends Props {
   id: string;
   label?: string;
-  type: string;
+  type?: string;
   className?: string;
   initialValue?: string;
 }

@@ -1,0 +1,13 @@
+div(id="popupCreateChat" class=`popup-create-chat-background${isOpened ? "" : " hidden"}`)
+  form(class="form-create-chat" id="formCreateChat")
+    label(
+      class="form-create-chat__img"
+      for="chat_avatar"
+      style=`background-image: url(${chatAvatarSrc ? chatAvatarSrc : defaultChatAvatarSrc})`
+    )
+      input(class="form-create-chat__input" id="chat_avatar" name="chat_avatar" type="file" accept="image/png, image/jpeg")
+      span(class="form-create-chat__text")="Upload avatar"
+    textInputComponent(data="nameChatInput")
+    buttonComponent(data="createChatButton")
+    button(type="button" id="closeCreateChatPopup" class="form-create-chat__cross-icon")
+      include ../../../../static/images/cross.svg

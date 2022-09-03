@@ -8,7 +8,7 @@ import {mapStateToPropsCallBack} from "../../store/utils";
 
 export interface LinkProps extends Props {
   href: string;
-  clasName?: string;
+  className?: string;
 }
 
 export class Link extends Block<LinkProps> {

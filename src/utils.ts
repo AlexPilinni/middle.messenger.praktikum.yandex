@@ -1,4 +1,5 @@
 import {Indexed} from "./core/types";
+import {host} from "./constants";
 
 export function toKebab(str: string): string {
   return str.split('').map((letter, idx) => {
@@ -112,3 +113,20 @@ export function cloneDeep<T extends object = object>(obj: T) {
   })(obj);
 }
 
+export function debounce(fn: (...args: unknown[]) => void, ms: number): (...args: unknown[]) => void {
+  let timeout: NodeJS.Timeout;
+
+  return function (...args: unknown[]): void {
+    const later = () => {
+      clearTimeout(timeout);
+      fn(...args);
+    }
+
+    clearTimeout(timeout);
+    timeout = setTimeout(later, ms);
+  }
+}
+
+export function getAvatarLink(pathToAvatar: string | null | undefined): string | null {
+  return pathToAvatar ? `${host}/api/v2/resources${pathToAvatar}` : null;
+}

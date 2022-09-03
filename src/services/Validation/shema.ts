@@ -24,6 +24,8 @@ export const SCHEMA_VALIDATION:SchemaValidation = {
   'first_name': [isRequired, minLength(2), maxLength(10), isRecommendedCharacters],
   'second_name': [isRequired, minLength(2), maxLength(10), isRecommendedCharacters],
   'display_name': [isRequired, minLength(2), maxLength(10), isRecommendedCharacters],
+  'chat_name': [isRequired, minLength(2), maxLength(20)],
+  'chat_avatar': [],
   'phone': [isRequired, isPhoneApprove],
   'message': [hasLength]
 }
