@@ -12,7 +12,7 @@ export class Block<T extends Props> {
    _element: HTMLElement;
    name: string;
    tagName: string;
-   props: T;
+   props: T | object;
 
    _storeEvents: StoreEvent[] = [];
 

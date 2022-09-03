@@ -1,6 +1,12 @@
 import {ChatPageProps} from "../../pages/chat/types";
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
 import vertEllipsisImg from '../../../static/images/vert-ellipsis.svg';
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
 import cartImg from '../../../static/images/cart.svg';
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
 import defaultAvatar from '../../../static/images/avatar.svg';
 
 export const CHAT_INITIAL_STATE: ChatPageProps = {
