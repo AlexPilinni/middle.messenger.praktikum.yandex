@@ -1,7 +1,7 @@
 # Messenger Yandex Project
 
 ## Ссылка на pull request
-- [Pull Request - sprint_2](https://github.com/AlexPilinni/middle.messenger.praktikum.yandex/pull/2)
+- [Pull Request - sprint_3](https://github.com/AlexPilinni/middle.messenger.praktikum.yandex/pull/3)
 
 ## Ссылка на деплой
 - [Netlify](https://apilin.netlify.app/index/)
