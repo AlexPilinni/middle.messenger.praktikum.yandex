@@ -9,13 +9,11 @@ import {profileEvents} from "./profile.service";
 import {mapStateToPropsCallBack} from "../../store/utils";
 import {UserInfoController} from "../../controllers/profile/get-user-info-controller";
 
-
 export class ProfilePage extends Block<ProfilePageProps> {
   constructor(propsObj: ProfilePageProps=PROFILE_INITIAL_STATE, events: Events = profileEvents, rootId?: string) {
     super('main', 'Profile', propsObj, events, rootId);
 
     this.subscribeToStoreEvent('ProfilePage', mapStateToPropsCallBack);
-
     UserInfoController.getInfo()
   }
 

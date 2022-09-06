@@ -7,7 +7,6 @@ import {TextInputProps} from "../../text-input/text-input";
 import './popup-create-chat.scss';
 import {ButtonProps} from "../../button/button";
 
-
 export interface PopupCreateChatProps extends Props {
   isOpened: boolean;
   defaultChatAvatarSrc: string;

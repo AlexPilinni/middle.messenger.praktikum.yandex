@@ -3,6 +3,9 @@
 ## Ссылка на pull request
 - [Pull Request - sprint_3](https://github.com/AlexPilinni/middle.messenger.praktikum.yandex/pull/3)
 
+## Ссылка на swagger
+- [API](https://ya-praktikum.tech/api/v2/swagger/#/)
+
 ## Ссылка на деплой
 - [Netlify](https://apilin.netlify.app/index/)
 

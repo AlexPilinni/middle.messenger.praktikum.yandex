@@ -17,5 +17,4 @@ export type State = {
   editPasswordPage: EditPasswordPageProps;
   clientErrorsPage: ClientErrorsProps;
   serverErrorsPage: ServerErrorsProps;
-
 }

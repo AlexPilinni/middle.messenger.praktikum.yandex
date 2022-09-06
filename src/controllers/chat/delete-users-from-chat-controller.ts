@@ -8,7 +8,6 @@ import {UsersListProps} from "../../components/found-users/users-list";
 import {GetChatsController} from "./get-chats-controller";
 import {FoundUserProps} from "../../components/found-user/types";
 
-
 type DeleteUsersFromChatFormModel = {
   users: number[];
   chatId: number;

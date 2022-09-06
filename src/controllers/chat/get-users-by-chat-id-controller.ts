@@ -9,7 +9,6 @@ import {getPathFromArray} from "../../core/utils/get-path-from-array";
 import {getEventName} from "../../core/utils/get-event-name";
 import {UsersListProps} from "../../components/found-users/users-list";
 
-
 const getUsersByChatIdAPI = new GetUsersByChatIdAPI();
 
 export class GetUsersByChatIdController {

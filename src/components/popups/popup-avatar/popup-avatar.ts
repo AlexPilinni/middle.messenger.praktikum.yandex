@@ -6,7 +6,6 @@ import templatePug from "./popup-avatar.pug";
 import {ButtonProps} from "../../button/button";
 import './popup-avatar.scss';
 
-
 export interface PopupAvatarProps extends Props {
   isOpened: boolean;
   defaultImgSrc: string;

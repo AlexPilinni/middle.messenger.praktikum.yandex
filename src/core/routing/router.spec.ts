@@ -4,7 +4,6 @@ import * as sinon from "sinon";
 import {Router} from "./router";
 import {BlockInheritor} from "../types";
 
-
 describe("Router", () => {
   beforeEach(() => {
     const dom = new JSDOM(

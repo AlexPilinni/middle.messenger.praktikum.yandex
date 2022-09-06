@@ -10,13 +10,13 @@ export interface ChatsListProps extends Props {
 }
 
 export class ChatsList extends Block<ChatsListProps> {
-	constructor(propsObj: ChatsListProps, eventName: string, events?: Events) {
-		super('div', 'chatsList', propsObj, events);
+  constructor(propsObj: ChatsListProps, eventName: string, events?: Events) {
+    super('div', 'chatsList', propsObj, events);
 
     this.subscribeToStoreEvent(eventName, mapStateToPropsCallBack);
-	}
+  }
 
-	render() {
-		return compileTemplateToElement(templatePug, this.props, 'chatsList', this._meta.events);
-	}
+  render() {
+    return compileTemplateToElement(templatePug, this.props, 'chatsList', this._meta.events);
+  }
 }

@@ -24,7 +24,6 @@ import {FoundUserProps} from "../../components/found-user/types";
 import {HandleFormService} from "../../services/handle-form-servise";
 const CHAT_PAGE_EVENT_NAME = 'ChatPage'
 
-
 class ChatHandleService {
   protected handleFormService: HandleFormService
   public chatEvents: Events
@@ -105,20 +104,22 @@ function getProps(handleFormService: HandleFormService): Events {
 
           const selectedChat= chats.find((chat: ChatCardProps) => chat.id === Number(chatCardElement.id));
 
-          GetChatTokenController.get(Number(chatCardElement.id)).then((token: string) => {
-            UserIdAndAvatarController.getIdAndAvatar()
-              .then((user: UserIdAndAvatarRequest) => {
+          if (selectedChat) {
+            GetChatTokenController.get(Number(chatCardElement.id)).then((token: string) => {
+              UserIdAndAvatarController.getIdAndAvatar()
+                .then((user: UserIdAndAvatarRequest) => {
 
-                if (webSocketController.isStarted) {
-                  webSocketController.closeConnection();
-                }
+                  if (webSocketController.isStarted) {
+                    webSocketController.closeConnection();
+                  }
 
-                startChat(user, selectedChat, token);
-              })
-              .catch(error => {
-                console.error(error);
-              })
-          });
+                  startChat(user, selectedChat, token);
+                })
+                .catch(error => {
+                  console.error(error);
+                })
+            });
+          }
         },
       },
       {

@@ -76,11 +76,13 @@ export function compileTemplateToElement(
   return fragment;
 }
 
-function getComponentInstance(componentName: string, props: unknown, eventName: string, events: Events): InstanceType<typeof Block> {
+function getComponentInstance(componentName: string, props: unknown,
+                              eventName: string, events: Events): InstanceType<typeof Block> {
   return new (REGISTERED_COMPONENTS as any)[componentName](props, eventName, events);
 }
 
-function setAttributes(childElementTag: Element, childComponents: InstanceType<typeof Block>[]): void {
+function setAttributes(childElementTag: Element,
+                       childComponents: InstanceType<typeof Block>[]): void {
   const attributeNames = childElementTag.getAttributeNames();
 
   const childElements = childComponents.map(childComponent => {
@@ -103,8 +105,10 @@ function setAttributes(childElementTag: Element, childComponents: InstanceType<t
   childElementTag.replaceWith(...childElements);
 }
 
-function getComponent(componentName: string, pageEventName: string, dataName: string, props: Props, events: Events): InstanceType<typeof Block> {
-  const component = getValueFromObjectByPath(componentsState, getPathFromArray([pageEventName, dataName]));
+function getComponent(componentName: string, pageEventName: string, dataName: string,
+                      props: Props, events: Events): InstanceType<typeof Block> {
+  const component =
+    getValueFromObjectByPath(componentsState, getPathFromArray([pageEventName, dataName]));
 
   if (component) {
     component.destroy();
@@ -113,7 +117,8 @@ function getComponent(componentName: string, pageEventName: string, dataName: st
   return getComponentInstance(componentName, props, getEventName(pageEventName, dataName), events);
 }
 
-function getValueFromObjectByPath(state: ComponentState, path: string): InstanceType<typeof Block> | undefined {
+function getValueFromObjectByPath(state: ComponentState,
+                                  path: string): InstanceType<typeof Block> | undefined {
   const pathArray = path.split('.');
 
   return pathArray.reduce((acc: ComponentState, key: string) => acc && (acc as any)[key], state);

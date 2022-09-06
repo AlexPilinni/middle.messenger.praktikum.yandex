@@ -8,7 +8,6 @@ import {TimeParsedProps, TimeProps} from './types';
 import './time.scss';
 import {Events} from "../../core/types";
 
-
 export class Time extends Block<TimeProps> {
 	constructor(propsObj: TimeProps, eventName: string, events?: Events) {
 		super('div', 'timeBlock', propsObj, events);

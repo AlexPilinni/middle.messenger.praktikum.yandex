@@ -24,7 +24,6 @@ export class ChatCard extends Block<ChatCardProps> {
 		super('div', 'chatCardBlock', propsObj, events);
 
     this.subscribeToStoreEvent(eventName, mapStateToPropsCallBack);
-
     this.eventName = eventName;
 	}
 

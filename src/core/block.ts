@@ -4,7 +4,6 @@ import store from "../store/store";
 import {Events, EventsEnum, Meta, Props, StoreEvent} from './types';
 import {toKebab} from "../utils";
 
-
 export class Block<T extends Props> {
 
    eventBus: EventBus;

@@ -6,18 +6,18 @@ import templatePug from './avatar.pug';
 import './avatar.scss';
 
 export interface AvatarProps extends Props {
-	avatarImgSrc: string | null;
-	size?: string;
+  avatarImgSrc: string | null;
+  size?: string;
 }
 
 export class Avatar extends Block<AvatarProps> {
-	constructor(propsObj: AvatarProps, eventName: string, events?: Events) {
-		super('div', 'avatarBlock', propsObj, events);
+  constructor(propsObj: AvatarProps, eventName: string, events?: Events) {
+    super('div', 'avatarBlock', propsObj, events);
 
     this.subscribeToStoreEvent(eventName, mapStateToPropsCallBack);
-	}
+  }
 
-	render() {
-		return compileTemplateToElement(templatePug, this.props, '', this._meta.events);
-	}
+  render() {
+    return compileTemplateToElement(templatePug, this.props, '', this._meta.events);
+  }
 }

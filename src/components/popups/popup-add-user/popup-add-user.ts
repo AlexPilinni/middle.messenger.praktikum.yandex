@@ -7,7 +7,6 @@ import './popup-add-user.scss';
 import {SearchUserInputProps} from "../../search-user/search-user-input";
 import {UsersListProps} from "../../found-users/users-list";
 
-
 export interface PopupAddUserProps extends Props {
   isOpened: boolean;
   searchUserInput: SearchUserInputProps;

@@ -10,7 +10,6 @@ export class Router {
   private _routes: Route[];
   private _history: History;
 
-
   constructor(rootQuery: string) {
     if (Router.__instance) {
       return Router.__instance;
@@ -38,7 +37,6 @@ export class Router {
 
   start() {
     window.onpopstate = (event) => {
-      // this._onRoute(event.currentTarget.location.pathname);
       this._onRoute((event.currentTarget as HTMLFormElement).location.pathname);
     }
 

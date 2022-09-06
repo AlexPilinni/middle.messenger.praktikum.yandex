@@ -6,6 +6,7 @@ import {Events} from "../../core/types";
 class SignInService {
   protected handleFormService: HandleFormService
   public signInEvents: Events
+
   constructor() {
     this.handleFormService = new HandleFormService()
     this.signInEvents = getProps(this.handleFormService)
@@ -14,49 +15,49 @@ class SignInService {
 
 function getProps(handleFormService: HandleFormService): Events {
   return {
-      click: [
-        {
-          id: 'goToSignUp',
-          fn: event => {
-            event.preventDefault();
-            router.go('/signup');
-          },
+    click: [
+      {
+        id: 'goToSignUp',
+        fn: event => {
+          event.preventDefault();
+          router.go('/signup');
         },
-      ],
-      focus: [
-        {
-          id: 'login',
-          fn: handleFormService.handleFieldFocus
-        },
-        {
-          id: 'password',
-          fn: handleFormService.handleFieldFocus
-        },
-      ],
-      blur: [
-        {
-          id: 'login',
-          fn: handleFormService.handleFieldBlur
-        },
-        {
-          id: 'password',
-          fn: handleFormService.handleFieldBlur
-        },
-      ],
-      submit: [
-        {
-          id: 'signin-form',
-          fn: event => {
-            const formData = handleFormService.handleFormSubmit(event);
+      },
+    ],
+    focus: [
+      {
+        id: 'login',
+        fn: handleFormService.handleFieldFocus
+      },
+      {
+        id: 'password',
+        fn: handleFormService.handleFieldFocus
+      },
+    ],
+    blur: [
+      {
+        id: 'login',
+        fn: handleFormService.handleFieldBlur
+      },
+      {
+        id: 'password',
+        fn: handleFormService.handleFieldBlur
+      },
+    ],
+    submit: [
+      {
+        id: 'signin-form',
+        fn: event => {
+          const formData = handleFormService.handleFormSubmit(event);
 
-            if (!formData) {
-              return;
-            }
-            UserSignInController.signIn(formData);
+          if (!formData) {
+            return;
           }
+          UserSignInController.signIn(formData);
         }
-      ],
-    }
+      }
+    ],
+  }
 }
 
 const signInService = new SignInService();

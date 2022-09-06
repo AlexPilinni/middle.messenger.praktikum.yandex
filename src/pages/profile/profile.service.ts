@@ -2,7 +2,6 @@ import {Events} from "../../core/types";
 import {router} from "../../index";
 import {UserLogOutController} from "../../controllers/auth/logout-controller";
 
-
 export class ProfileService {
   public profileEvents: Events
   constructor() {

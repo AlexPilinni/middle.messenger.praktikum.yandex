@@ -3,7 +3,6 @@ import {Http, Options} from "../../services/http-service";
 import {host} from "../../constants";
 import {ErrorResponse} from "../types";
 
-
 export type ChatsResponse = Chat[];
 
 export type Chat = {

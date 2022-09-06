@@ -3,7 +3,6 @@ import {State} from "./types";
 import {INITIAL_STATE} from "./initialState/initialState";
 import {set} from "../core/utils/set-values-to-object";
 
-
 class Store extends EventBus {
   private state: State = INITIAL_STATE;
 

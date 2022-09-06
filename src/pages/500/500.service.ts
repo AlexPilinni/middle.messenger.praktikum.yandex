@@ -1,6 +1,5 @@
 import {Events} from "../../core/types";
 
-
 export class ServerErrorsService {
   serverErrorsEvents: Events
   constructor() {

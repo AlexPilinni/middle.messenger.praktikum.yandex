@@ -5,7 +5,6 @@ import {
   ChangeUserPasswordController
 } from "../../controllers/profile/change-user-password-controller";
 
-
 class EditPasswordService {
   protected handleFormService: HandleFormService
   public editPasswordEvents: Events
@@ -58,7 +57,7 @@ function getProps(handleFormService: HandleFormService): Events {
     submit: [
       {
         id: 'edit-password-form',
-        fn: (event) => {
+         fn: async (event) => {
           event.preventDefault();
 
           const formData = handleFormService.handleFormSubmit(event)
@@ -66,9 +65,9 @@ function getProps(handleFormService: HandleFormService): Events {
             oldPassword: formData['password'],
             newPassword: formData['new-password']
           }
-          ChangeUserPasswordController.change(newFormData)
+          await ChangeUserPasswordController.change(newFormData)
 
-          setTimeout(()=> router.go('/profile'),1000)
+          return ()=> router.go('/profile');
         }
       }
     ],

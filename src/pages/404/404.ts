@@ -6,7 +6,6 @@ import './404.scss'
 import {clientErrorsEvents} from "./404.sevice";
 import {CLIENT_ERRORS_INITIAL_STATE} from "../../store/initialState/client-errors-initial-state";
 
-
 export class ClientErrorPage extends Block<Props> {
   constructor(propsObj: Props=CLIENT_ERRORS_INITIAL_STATE, events:Events = clientErrorsEvents, rootId?: string) {
     super('main', 'ClientErrorPage', propsObj, events, rootId);

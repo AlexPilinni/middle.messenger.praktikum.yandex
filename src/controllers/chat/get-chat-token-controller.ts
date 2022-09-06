@@ -3,7 +3,6 @@ import {ErrorResponse} from "../../api/types";
 import {Indexed} from "../../core/types";
 import {ChatTokenResponse, GetChatTokenAPI} from "../../api/chat/get-chat-token-api";
 
-
 const getChatTokenAPI = new GetChatTokenAPI();
 
 export class GetChatTokenController {

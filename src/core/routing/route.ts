@@ -2,7 +2,6 @@ import {Block} from "../block";
 import {isEqual} from "../utils/is-equal";
 import {BlockInheritor, RouteProps} from "../types";
 
-
 export class Route {
   private readonly _pathname: string;
   private readonly _blockClass: BlockInheritor;

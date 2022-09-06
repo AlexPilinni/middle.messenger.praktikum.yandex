@@ -5,7 +5,6 @@ import {compileTemplateToElement} from "../../../core/utils/compile-template";
 import templatePug from "./ellipsis-menu.pug";
 import './ellipsis-menu.scss';
 
-
 export interface EllipsisMenuProps extends Props {
   isOpened: boolean;
 }

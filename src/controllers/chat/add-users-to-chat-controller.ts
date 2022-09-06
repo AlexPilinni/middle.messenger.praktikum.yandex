@@ -5,7 +5,7 @@ import store from "../../store/store";
 import {getPathFromArray} from "../../core/utils/get-path-from-array";
 import {getEventName} from "../../core/utils/get-event-name";
 import {UsersListProps} from "../../components/found-users/users-list";
-
+import {FoundUserProps} from "../../components/found-user/types";
 
 export type AddUsersToChatFormModel = {
   users: number[];
@@ -51,7 +51,7 @@ function prepareDataToRequest(data: AddUsersToChatFormModel): Options {
 function prepareDataToStore(usersIds: number[]): UsersListProps {
   const state = store.getState();
 
-  const getUsersWithDisabledPlusButton = (usersList) => {
+  const getUsersWithDisabledPlusButton = (usersList: FoundUserProps[]) => {
     return usersList.map(user => {
       if (usersIds.includes(user.id)) {
         return {

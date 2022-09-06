@@ -6,7 +6,6 @@ import {
   UserInfoByIdResponse
 } from "../../api/profile/get-user-info-by-id-api";
 
-
 const getUserInfoByIdAPI = new GetUserInfoByIdAPI();
 
 export class UserInfoByIdController {

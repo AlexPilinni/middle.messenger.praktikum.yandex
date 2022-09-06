@@ -1,11 +1,11 @@
 section(id=id class=`chat-card${active ? ' chat-card--active' : ''}`)
-    avatarComponent(data="avatar" class="chat-card__avatar")
-    div.chat-card__content
-        h3(class="chat-card__name")=chatName
-        if textMessage
-            p(class="chat-card__text")=textMessage
-    div.chat-card__addons
-      if time
-        timeComponent(data="time" class="chat-card__time")
-      if unreadMessageCount
-        span(class="chat-card__count")=unreadMessageCount
+  avatarComponent(data="avatar" class="chat-card__avatar")
+  div.chat-card__content
+    h3(class="chat-card__name")=chatName
+    if textMessage
+      p(class="chat-card__text")=textMessage
+  div.chat-card__addons
+    if time
+      timeComponent(data="time" class="chat-card__time")
+    if unreadMessageCount
+      span(class="chat-card__count")=unreadMessageCount
