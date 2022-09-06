@@ -1,0 +1,8 @@
+div(id="closeEllipsisMenu" class=`ellipsis-menu-background${isOpened ? "" : " hidden"}`)
+  section(class="ellipsis-menu-section")
+    div(class='ellipsis-menu-item' id="addUser")
+      include ../../../../static/images/add-user.svg
+      span(class="ellipsis-menu-item__text")="Добавить пользователей"
+    div(class='ellipsis-menu-item' id="deleteUser")
+      include ../../../../static/images/delete-user.svg
+      span(class="ellipsis-menu-item__text")="Удалить пользователей"

@@ -1,0 +1,24 @@
+@import "static/styles/variables";
+
+.avatar-block {
+  .avatar {
+    border-radius: 50%;
+    overflow: hidden;
+
+    &__img {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+
+    &__default {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      background: $gray url("../../../static/images/avatar.svg");
+      background-size: 100%;
+      background-blend-mode: multiply;
+      opacity: 0.1;
+    }
+  }
+}

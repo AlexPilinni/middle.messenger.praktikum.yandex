@@ -1,0 +1,46 @@
+@import "static/styles/variables";
+.found-user {
+  margin-bottom: 10px;
+
+  &-item {
+    display: flex;
+    align-items: center;
+    background-color: $white;
+    border-radius: 20px;
+
+    &__avatar {
+      margin-right: 10px;
+    }
+
+    &__name {
+      flex-grow: 1;
+      font-size: 12px;
+      color: $black;
+    }
+
+    &__btn-icon {
+      display: flex;
+      padding: 0;
+      border: none;
+      background-color: transparent;
+      color: $blue;
+
+      &:hover {
+        cursor: pointer;
+        color: rgba($blue, 85%);
+      }
+
+      &:disabled {
+        color: $light-gray;
+
+        &:hover {
+          cursor: default;
+        }
+      }
+    }
+  }
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}

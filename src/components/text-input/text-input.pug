@@ -1,16 +1,16 @@
 input(
-    type=type
-    class=`${className}__field text-input__field`
-    id=id
-    name=id
-    placeholder=label
-    autocomplete="on"
-    value=initialValue || ''
+  type=type
+  class=`${className}__field text-input__field`
+  id=id
+  name=id
+  placeholder=label
+  autocomplete="on"
+  value=initialValue || ''
 )
 label(
-    class=`${className}__label text-input__label`
-    for=id
+  class=`${className}__label text-input__label`
+  for=id
 )= label
 span(
-    class=`${className}__error text-input__error`
+  class=`${className}__error text-input__error`
 )= errorMessage

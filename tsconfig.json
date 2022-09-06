@@ -1,15 +1,18 @@
 {
+  "ts-node": {
+    "transpileOnly": true,
+  },
   "compilerOptions": {
     "target": "es5",
     "lib": ["esnext", "dom"],
     "rootDir": "src",
     "outDir": "dist",
-    "declaration": false,
+    "moduleResolution": "node",
     "module": "commonjs",
     "noImplicitAny": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "sourceMap": true,
-    "strictNullChecks": true
+    "strictNullChecks": true,
   }
 }

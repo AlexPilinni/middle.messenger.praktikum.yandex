@@ -1,34 +1,24 @@
 import {Block} from '../../core/block';
-import {Props} from '../../core/types';
-import {compileTemplateToElement} from '../../core/utils';
+import {Events, Props} from '../../core/types';
+import {compileTemplateToElement} from '../../core/utils/compile-template';
 import templatePug from './500.pug';
 import './500.scss'
-import {Errors} from "../../components/errors/errors";
+import {serverErrorsEvents} from "./500.service";
+import {SERVER_ERRORS_INITIAL_STATE} from "../../store/initialState/server-errors-initial-state";
 
-const props: Props = {
-  children: {
-    errorsComponent: new Errors({
-      className: 'server-error-page',
-      title: '500',
-      message: 'Мы уже фиксим.'
-    }),
-  },
-};
-
-class ServerErrorPage extends Block<Props> {
-  constructor(props: Props) {
-    super('main', 'ServerErrorPage', props);
+export class ServerErrorPage extends Block<Props> {
+  constructor(propsObj: Props=SERVER_ERRORS_INITIAL_STATE, events: Events=serverErrorsEvents, rootId?: string) {
+    super('main', 'ServerErrorPage', propsObj, events, rootId);
   }
 
   render() {
-    return compileTemplateToElement(templatePug, this.props);
+    return compileTemplateToElement(templatePug, this.props, 'ServerErrorPage', this._meta.events);
   }
 
   componentDidMount() {
-    const root = document.getElementById('app');
+    const root = document.getElementById(this._meta.rootId || 'app');
 
     root?.appendChild(this.getContent());
   }
 }
 
-new ServerErrorPage(props);

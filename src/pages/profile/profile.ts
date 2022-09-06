@@ -1,46 +1,29 @@
 import {Block} from '../../core/block';
-import {Props} from '../../core/types';
-import {compileTemplateToElement} from '../../core/utils';
+import {compileTemplateToElement} from '../../core/utils/compile-template';
 import templatePug from './profile.pug';
 import './profile.scss'
+import {ProfilePageProps} from "./types";
+import {PROFILE_INITIAL_STATE} from "../../store/initialState/profile-initial-state";
+import {Events} from "../../core/types";
+import {profileEvents} from "./profile.service";
+import {mapStateToPropsCallBack} from "../../store/utils";
+import {UserInfoController} from "../../controllers/profile/get-user-info-controller";
 
-interface ProfilePageProps extends Props {
-  user: {
-    email: string;
-    login: string;
-    first_name: string;
-    second_name: string;
-    display_name: string;
-    phone: string;
-  };
-}
+export class ProfilePage extends Block<ProfilePageProps> {
+  constructor(propsObj: ProfilePageProps=PROFILE_INITIAL_STATE, events: Events = profileEvents, rootId?: string) {
+    super('main', 'Profile', propsObj, events, rootId);
 
-const props: ProfilePageProps = {
-  user: {
-    email: 'pochta@yandex.ru',
-    login: 'ivanivanov',
-    first_name: 'Иван',
-    second_name: 'Иванов',
-    display_name: 'Иван',
-    phone: '+7 (909) 967 30 30'
-  },
-  children: {},
-};
-
-class ProfilePage extends Block<ProfilePageProps> {
-  constructor(props: ProfilePageProps) {
-    super('main', 'Profile', props);
+    this.subscribeToStoreEvent('ProfilePage', mapStateToPropsCallBack);
+    UserInfoController.getInfo()
   }
 
   render() {
-    return compileTemplateToElement(templatePug, this.props);
+    return compileTemplateToElement(templatePug, this.props, 'ProfilePage', this._meta.events);
   }
 
   componentDidMount() {
-    const root = document.getElementById('app');
+    const root = document.getElementById(this._meta.rootId || 'app');
 
     root?.appendChild(this.getContent());
   }
 }
-
-new ProfilePage(props);

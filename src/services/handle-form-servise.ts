@@ -24,15 +24,10 @@ export class HandleFormService {
     (mainBlock as HTMLInputElement).classList.remove('invalid');
   }
 
-  handleSubmit(event: Event): void {
+  handleSubmit(event: Event): Record<string, string> | null {
     event.preventDefault();
     const form = event.target as HTMLFormElement;
-
-    const formData = this.serializeForm(form);
-
-    if (formData) {
-      console.log('formValue', formData);
-    }
+    return this.serializeForm(form);
   }
 
   private serializeForm(formNode: HTMLFormElement): Record<string, string> | null {
@@ -43,13 +38,14 @@ export class HandleFormService {
       const mainBlock = element.parentElement
       const errorBlock = (mainBlock as HTMLElement).lastChild;
       const invalid = this.formValidationService.validateInput(element as HTMLInputElement);
+      // console.log(invalid)
+      // console.log(errorBlock);
       if (invalid) {
         isFormValid = false;
         (mainBlock as HTMLElement).classList.add('invalid');
         (errorBlock as HTMLElement).textContent = invalid
       }
     })
-
     if (!isFormValid) {
       return null;
     }
@@ -59,7 +55,7 @@ export class HandleFormService {
         const {name, value} = element;
 
         obj[name] = value;
-        element.value = ''
+        // element.value = ''
         return obj;
       }, {});
   }

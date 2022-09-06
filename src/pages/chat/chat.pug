@@ -1,0 +1,40 @@
+section.sidebar
+  button(type="button" id="openCreateChatPopup" class="sidebar__create-button")
+    include ../../../static/images/create-chat.svg
+  div.search-container
+    linkComponent(id="goToSettings" data="linkComponent")
+    searchInputComponent(data="search")
+  div(id="chatCards" class="sidebar__chats")
+    chatsListComponent(data="chatsList")
+section.main
+  section.top-panel
+    div.top-panel__avatar-container
+      if chatName
+        avatarComponent(data="chatAvatar" class="top-panel__avatar")
+        span(class="top-panel__author-name")=chatName
+    div.top-panel__options
+      if selectedChat
+        input(type="image" class="top-panel__options-ellipsis-icon" id="cart" alt="cart" src=cartImgSrc)
+        input(type="image" id="vertical-ellipsis" alt="vertical-ellipsis" src=vertEllipsisImgSrc)
+  if selectedChat
+    section.chat
+      if time
+        timeComponent(data="time" class="chat__time")
+      messagesListComponent(data="messagesList")
+    section.bottom-panel
+      form#messenger-form.form-message
+        button(type="button" class="chat__input-file")
+        textarea#message.chat__input-field(name="message" autocomplete="on"  wrap="hard"
+          placeholder="Сообщение")
+        button.chat__input-submit(type="submit")
+        span.chat__input-helper
+  else
+    p(class='main__empty-text')='Выберите чат чтобы отправить сообщение'
+
+ellipsisMenu(data="ellipsisMenu")
+
+popupCreateChatComponent(data="popupCreateChat")
+
+popupAddUserToChatComponent(data="popupAddUserToChat")
+
+popupDeleteUserFromChatComponent(data="popupDeleteUserFromChat")

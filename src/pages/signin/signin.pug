@@ -1,14 +1,6 @@
 form#signin-form.signin-form
-    h1.signin-form__title Регистрация
-    emailInputComponent
-    loginInputComponent
-    firstnameInputComponent
-    secondnameInputComponent
-    phoneInputComponent
-    passwordInputComponent
-    repeatPasswordInputComponent
-    buttonComponent
-    a.signin-form__link(href="../login/index.html") Войти
-
-
-
+  h1.signin-form__title=title
+  loginInputComponent(data="loginInputComponent")
+  passwordInputComponent(data="passwordInputComponent")
+  buttonComponent(data="buttonComponent")
+  a.signin-form__link(href="#" id="goToSignUp") Нет аккаунта?

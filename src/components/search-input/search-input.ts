@@ -1,11 +1,12 @@
 import {Block} from '../../core/block';
-import {Props} from '../../core/types';
-import {compileTemplateToElement} from '../../core/utils';
+import {Events, Props} from '../../core/types';
+import {compileTemplateToElement} from '../../core/utils/compile-template';
 import templatePug from './search-input.pug';
 import './search-input.scss';
 import {toKebab} from "../../utils";
+import {mapStateToPropsCallBack} from "../../store/utils";
 
-interface SearchInputProps extends Props {
+export interface SearchInputProps extends Props {
   id: string;
   label?: string;
   type: string;
@@ -13,8 +14,10 @@ interface SearchInputProps extends Props {
 }
 
 export class SearchInput extends Block<SearchInputProps> {
-  constructor(props: SearchInputProps) {
-    super('form', 'SearchInput', props);
+  constructor(props: SearchInputProps, eventName: string, events?: Events) {
+    super('form', 'SearchInput', props, events);
+
+    this.subscribeToStoreEvent(eventName, mapStateToPropsCallBack);
   }
 
   _addComponentNameClass() {
@@ -22,6 +25,6 @@ export class SearchInput extends Block<SearchInputProps> {
   }
 
   render() {
-    return compileTemplateToElement(templatePug, this.props);
+    return compileTemplateToElement(templatePug, this.props, '', this._meta.events);
   }
 }

@@ -1,33 +1,33 @@
 h1.profile__title
 aside.profile__panel
-    a(href="../messenger/index.html" class="profile__link")
+  a(href="#" id="goToChat" class="profile__link")
 main.profile__main
-    section.profile__section
-        .profile__avatar
-        span.profile__user=user.display_name
-        ul.profile__info
-            li.profile__item
-                .profile__name Почта
-                .profile__value= user.email
-            li.profile__item
-                .profile__name Логин
-                .profile__value= user.login
-            li.profile__item
-                .profile__name Имя
-                .profile__value= user.first_name
-            li.profile__item
-                .profile__name Фамилия
-                .profile__value= user.second_name
-            li.profile__item
-                .profile__name Имя в чате
-                .profile__value= user.display_name
-            li.profile__item
-                .profile__name Телефон
-                .profile__value= user.phone
-        ul.controls
-            li.controls__item
-                a(href="../edit-profile/index.html" class="controls__link") Изменить данные
-            li.controls__item
-                a(href="../edit-password/index.html" class="controls__link") Изменить пароль
-            li.controls__item
-                a(href="../login/index.html" class="controls__link") Выйти
+  section.profile__section
+    .profile__avatar
+    span.profile__user=user.display_name
+    ul.profile__info
+      li.profile__item
+        .profile__name Почта
+        .profile__value= user.email
+      li.profile__item
+        .profile__name Логин
+        .profile__value= user.login
+      li.profile__item
+        .profile__name Имя
+        .profile__value= user.first_name
+      li.profile__item
+        .profile__name Фамилия
+        .profile__value= user.second_name
+      li.profile__item
+        .profile__name Имя в чате
+        .profile__value= user.display_name
+      li.profile__item
+        .profile__name Телефон
+        .profile__value= user.phone
+    ul.controls
+      li.controls__item
+        a(href="#" id="goToEditProfile" class="controls__link") Изменить данные
+      li.controls__item
+        a(href="#" id="goToEditPassword" class="controls__link") Изменить пароль
+      li.controls__item
+        a(href="#" id="goToLogin" class="controls__link") Выйти
