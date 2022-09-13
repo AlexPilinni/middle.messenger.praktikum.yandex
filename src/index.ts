@@ -7,6 +7,7 @@ import {EditPasswordPage} from "./pages/edit-password/edit-password";
 import {ClientErrorPage} from "./pages/404/404";
 import {ServerErrorPage} from "./pages/500/500";
 import {ChatPage} from "./pages/chat/chat";
+import '../static/index.scss'
 
 export const router = new Router("app");
 router

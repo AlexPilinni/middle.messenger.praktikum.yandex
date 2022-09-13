@@ -384,7 +384,6 @@ function getProps(handleFormService: HandleFormService): Events {
         fn: event => {
           event.preventDefault();
           const formData = handleFormService.handleFormSubmit(event);
-          console.log(formData)
           if (!formData) {
             return;
           }

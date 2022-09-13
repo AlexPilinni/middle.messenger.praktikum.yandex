@@ -1,7 +1,7 @@
 import {Block} from '../../core/block';
 import {Events, Props} from '../../core/types';
 import {compileTemplateToElement} from '../../core/utils/compile-template';
-import templatePug from './text-input.pug';
+const templatePug = require('./text-input.pug');
 import './text-input.scss';
 import {toKebab} from "../../utils";
 import {mapStateToPropsCallBack} from "../../store/utils";

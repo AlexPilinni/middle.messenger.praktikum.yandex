@@ -2,8 +2,9 @@ import {Block} from '../../core/block';
 import {Events, Props} from '../../core/types';
 import {compileTemplateToElement} from '../../core/utils/compile-template';
 import {mapStateToPropsCallBack} from '../../store/utils';
-import templatePug from './avatar.pug';
+const templatePug = require('./avatar.pug');
 import './avatar.scss';
+
 
 export interface AvatarProps extends Props {
   avatarImgSrc: string | null;

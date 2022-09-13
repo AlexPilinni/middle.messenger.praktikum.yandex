@@ -5,8 +5,6 @@ export class FormValidationService {
 
   validateInput(element: HTMLInputElement): string | null {
     const {name, value} = element;
-    console.log(element)
-    console.log(name, value)
     const validators = SCHEMA_VALIDATION[name]
     this.errors = []
     validators.forEach(validator => {

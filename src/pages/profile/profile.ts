@@ -1,6 +1,6 @@
 import {Block} from '../../core/block';
 import {compileTemplateToElement} from '../../core/utils/compile-template';
-import templatePug from './profile.pug';
+const templatePug = require('./profile.pug');
 import './profile.scss'
 import {ProfilePageProps} from "./types";
 import {PROFILE_INITIAL_STATE} from "../../store/initialState/profile-initial-state";

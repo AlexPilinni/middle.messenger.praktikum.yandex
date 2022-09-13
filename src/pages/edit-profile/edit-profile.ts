@@ -1,6 +1,6 @@
 import {Block} from '../../core/block';
 import {compileTemplateToElement} from '../../core/utils/compile-template';
-import templatePug from './edit-profile.pug';
+const templatePug = require('./edit-profile.pug');
 import './edit-profile.scss'
 import {editProfileEvents} from './edit-profile.service';
 import {EditProfilePageProps} from "./types";
