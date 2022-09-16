@@ -10,7 +10,8 @@
     "lint fix": "eslint src/ --fix",
     "stylelint": "stylelint \"src//*.scss\"",
     "stylelintFixed": "stylelint \"src//*.scss\" --fix",
-    "test": "mocha"
+    "test": "mocha",
+    "prepare": "husky install"
   },
   "targets": {
     "frontend": {
@@ -54,7 +55,7 @@
     "css-loader": "6.7.1",
     "eslint": "8.20.0",
     "html-webpack-plugin": "5.5.0",
-    "husky": "^8.0.1",
+    "husky": "8.0.1",
     "jsdom": "20.0.0",
     "mocha": "10.0.0",
     "parcel": "2.7.0",
