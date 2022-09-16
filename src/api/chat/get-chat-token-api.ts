@@ -10,7 +10,7 @@ export type ChatTokenResponse = {
 const getChatTokenAPIInstance = new Http(`${host}/api/v2/chats/token/`);
 
 export class GetChatTokenAPI extends BaseAPI {
-  public get(options: Options): Promise<ChatTokenResponse | ErrorResponse> {
+  public get(options: Options, chatId): Promise<ChatTokenResponse | ErrorResponse> {
     return getChatTokenAPIInstance.post<ChatTokenResponse | ErrorResponse>(`${chatId}`, options)
       .then((data) => data);
   }

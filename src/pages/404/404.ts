@@ -1,7 +1,7 @@
 import {Block} from '../../core/block';
 import {Events, Props} from '../../core/types';
 import {compileTemplateToElement} from '../../core/utils/compile-template';
-import templatePug from './404.pug';
+const templatePug = require('./404.pug');
 import './404.scss'
 import {clientErrorsEvents} from "./404.sevice";
 import {CLIENT_ERRORS_INITIAL_STATE} from "../../store/initialState/client-errors-initial-state";

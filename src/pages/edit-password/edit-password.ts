@@ -1,6 +1,6 @@
 import {Block} from '../../core/block';
 import {compileTemplateToElement} from '../../core/utils/compile-template';
-import templatePug from './edit-password.pug';
+const templatePug = require('./edit-password.pug');
 import './edit-password.scss'
 import {editPasswordEvents} from './edit-password.service';
 import {EditPasswordPageProps} from "./types";

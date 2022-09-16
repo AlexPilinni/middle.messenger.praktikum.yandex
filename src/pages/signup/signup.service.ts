@@ -90,9 +90,7 @@ function getProps(handleFormService: HandleFormService): Events {
         id: 'signup-form',
         fn: event => {
           const formData = handleFormService.handleFormSubmit(event);
-          console.log('formData', formData)
           if (!formData) {
-            console.log('не зашло')
             return;
           }
 

@@ -2,9 +2,9 @@ import {Block} from "../../../core/block";
 import {Events, Props} from "../../../core/types";
 import {mapStateToPropsCallBack} from "../../../store/utils";
 import {compileTemplateToElement} from "../../../core/utils/compile-template";
-import templatePug from "./popup-avatar.pug";
 import {ButtonProps} from "../../button/button";
 import './popup-avatar.scss';
+const templatePug = require('./popup-avatar.pug');
 
 export interface PopupAvatarProps extends Props {
   isOpened: boolean;
